@@ -1,0 +1,7 @@
+*
+!.gitignore
+!.zshrc
+!.zshenv
+!.oh-my-zsh/custom
+!.tmux.conf
+!.tmux-layouts/*
