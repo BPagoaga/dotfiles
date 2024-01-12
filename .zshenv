@@ -9,10 +9,12 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 export NVM_SYMLINK_CURRENT=true
+export TERM="xterm-256color"
+[[ -n $TMUX ]] && export TERM="screen-256color"
 
 # Tmux
 export TMUXIFIER_LAYOUT_PATH="$HOME/.tmux-layouts"
-export TMUXIFIER_TMUX_ITERM_ATTACH="-CC"
+# export TMUXIFIER_TMUX_ITERM_ATTACH="-CC"
 
 # Bun
 export BUN_INSTALL="/Users/bernardpagoaga/.bun"

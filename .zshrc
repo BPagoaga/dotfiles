@@ -115,4 +115,4 @@ alias config="tmuxifier load-session config"
 
 eval "$(tmuxifier init -)"
 
-echo "$(nvm use lts/gallium)"
+echo "$(nvm use lts/iron)"
