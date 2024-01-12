@@ -99,20 +99,29 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Determine if running on linux or macos
+unameOut="$(uname -s)"
+case "${unameOut}" in
+  Linux*)     machine=Linux;;
+  Darwin*)    machine=Mac;;
+  CYGWIN*)    machine=Cygwin;;
+  MINGW*)     machine=MinGw;;
+  *)          machine="UNKNOWN:${unameOut}"
+esac
+
+if [ "$machine" = "Mac" ]; then
 alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
-alias vi="nvim"
-alias vim="nvim"
-# alias nvim="lvim"
 alias vscode="/Applications/Visual\ Studio\ Code.app/contents/Resources/app/bin/code"
-alias JWR="tmuxifier load-session JWR"
-alias JWA="tmuxifier load-session JWA"
-alias FA="tmuxifier load-session FA"
-alias SX="tmuxifier load-session SX"
-alias JM="tmuxifier load-session JM"
-alias config="tmuxifier load-session config"
 # bun completions
 [ -s "/Users/bernardpagoaga/.bun/_bun" ] && source "/Users/bernardpagoaga/.bun/_bun"
+elif [ "$machine" = "Linux" ]; then
+alias wezterm='flatpak run org.wezfurlong.wezterm'
+# bun completions
+[ -s "/home/bpagoaga/.bun/_bun" ] && source "/home/bpagoaga/.bun/_bun"
+fi
 
-eval "$(tmuxifier init -)"
+alias vi="nvim"
+alias vim="nvim"
 
 echo "$(nvm use lts/iron)"
