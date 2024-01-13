@@ -6,5 +6,4 @@
 !.tmux.conf
 !.tmux-layouts/*
 !.wezterm.lua
-!.config
-!.config/nvim/*
+!.config/
