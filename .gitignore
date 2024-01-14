@@ -2,13 +2,12 @@
 !.gitignore
 !.zshrc
 !.zshenv
-!.oh-my-zsh/
-!.oh-my-zsh/custom/
-!.oh-my-zsh/custom/themes/
-!.oh-my-zsh/custom/themes/smt-custom.zsh-theme 
+# oh-my-zsh is a git repo, so it can't be read here
+# !.oh-my-zsh/
 !.tmux.conf
 !.tmux-layouts/*
 !.wezterm.lua
 !.config/
 !.config/wezterm/
-!.config/wezterm/init.lua
+!.config/wezterm/colors/
+!.config/wezterm/colors/custom.toml

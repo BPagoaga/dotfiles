@@ -13,7 +13,7 @@ end
 -- This is where you actually apply your config choices
 
 -- For example, changing the color scheme:
-config.color_scheme = "catppuccin-mocha"
+config.color_scheme = "Freecodecamp dark theme"
 
 config.font = wezterm.font("FiraCode Nerd Font", { weight = "DemiBold" })
 config.font_size = 14
