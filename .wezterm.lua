@@ -33,8 +33,8 @@ config.hide_tab_bar_if_only_one_tab = true
 
 local mux = wezterm.mux
 
-wezterm.on("gui-startup", function(cmd)
-	local server_tabs, servers_pane, window = mux.spawn_window({
+wezterm.on("gui-startup", function()
+	local _, servers_pane, window = mux.spawn_window({
 		cwd = wezterm.home_dir,
 	})
 	servers_pane:window():gui_window():toggle_fullscreen()
@@ -43,7 +43,7 @@ wezterm.on("gui-startup", function(cmd)
 	servers_pane:window():gui_window():maximize()
 	local fa_server_pane = servers_pane:split({
 		direction = "Right",
-		size = 0.5,
+		size = 0.333,
 		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/front-analytics",
 	})
 
@@ -61,6 +61,11 @@ wezterm.on("gui-startup", function(cmd)
 		direction = "Bottom",
 		size = 0.5,
 		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/spacex-mw",
+	})
+	fa_server_pane:split({
+		direction = "Bottom",
+		size = 0.5,
+		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/iot-managment",
 	})
 
 	window:spawn_tab({
@@ -82,6 +87,10 @@ wezterm.on("gui-startup", function(cmd)
 	window:spawn_tab({
 		direction = "Right",
 		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/spacex-mw",
+	})
+	window:spawn_tab({
+		direction = "Right",
+		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/iot-managment",
 	})
 end)
 

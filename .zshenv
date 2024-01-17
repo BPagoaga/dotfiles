@@ -48,4 +48,5 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="$HOME/.tmuxifier/bin:$PATH"
 export EDITOR="vi"
 
-
+# avoir javascript heap out of memory error
+export NODE_OPTIONS=--max-old-space-size=4096
