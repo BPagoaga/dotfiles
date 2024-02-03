@@ -60,11 +60,6 @@ wezterm.on("gui-startup", function()
 	fa_server_pane:split({
 		direction = "Bottom",
 		size = 0.5,
-		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/spacex-mw",
-	})
-	fa_server_pane:split({
-		direction = "Bottom",
-		size = 0.5,
 		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/iot-managment",
 	})
 
@@ -83,10 +78,6 @@ wezterm.on("gui-startup", function()
 	window:spawn_tab({
 		direction = "Right",
 		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/front-analytics",
-	})
-	window:spawn_tab({
-		direction = "Right",
-		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/spacex-mw",
 	})
 	window:spawn_tab({
 		direction = "Right",
