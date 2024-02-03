@@ -25,7 +25,7 @@ elif [ "$machine" = "Linux" ]; then
     export ANDROID_HOME="/home/bpagoaga/.android/android_sdk_root"
     export ANDROID_SDK_ROOT="/home/bpagoaga/.android/android_sdk_root"
     export CAPACITOR_ANDROID_STUDIO_PATH="/home/bpagoaga/android-studio/bin/studio.sh"
-    export JAVA_HOME="/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64/bin"
+    export JAVA_HOME="/usr/lib/jvm/temurin-21-jdk-amd64/bin"
     export PATH="$ANDROID_SDK_ROOT/platform-tools:$PATH"
     export PATH="/home/bpagoaga/neovim/bin:$PATH"
 fi
@@ -33,6 +33,7 @@ fi
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PATH="$HOME/.nvm/current/bin:$PATH"
 export NVM_SYMLINK_CURRENT=true
 export TERM="xterm-256color"
 [[ -n $TMUX ]] && export TERM="screen-256color"
