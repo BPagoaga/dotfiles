@@ -16,7 +16,7 @@ end
 config.color_scheme = "Freecodecamp dark theme"
 
 config.font = wezterm.font("FiraCode Nerd Font", { weight = "DemiBold" })
-config.font_size = 14
+config.font_size = 12
 config.line_height = 1.2
 
 config.window_background_opacity = 0.9
@@ -34,7 +34,7 @@ config.hide_tab_bar_if_only_one_tab = true
 local mux = wezterm.mux
 
 wezterm.on("gui-startup", function()
-	local _, servers_pane, window = mux.spawn_window({
+	local servers_tab, servers_pane, window = mux.spawn_window({
 		cwd = wezterm.home_dir,
 	})
 	servers_pane:window():gui_window():toggle_fullscreen()
@@ -62,27 +62,116 @@ wezterm.on("gui-startup", function()
 		size = 0.5,
 		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/iot-managment",
 	})
+	servers_tab:set_title("npm")
 
-	window:spawn_tab({
+	window
+		:spawn_tab({
+			direction = "Right",
+			cwd = wezterm.home_dir .. "/Documents/projects/jooxter/jooxter-webapp-react",
+		})
+		:set_title("JWR")
+	window
+		:spawn_tab({
+			direction = "Right",
+			cwd = wezterm.home_dir .. "/Documents/projects/jooxter/jooxter-webapp-angular",
+		})
+		:set_title("JWA")
+	window
+		:spawn_tab({
+			direction = "Right",
+			cwd = wezterm.home_dir .. "/Documents/projects/jooxter/jooxter-mobile",
+		})
+		:set_title("JM")
+	window
+		:spawn_tab({
+			direction = "Right",
+			cwd = wezterm.home_dir .. "/Documents/projects/jooxter/front-analytics",
+		})
+		:set_title("FA")
+	window
+		:spawn_tab({
+			direction = "Right",
+			cwd = wezterm.home_dir .. "/Documents/projects/jooxter/iot-managment",
+		})
+		:set_title("IOT")
+	window
+		:spawn_tab({
+			direction = "Right",
+			cwd = wezterm.home_dir .. ".config/nvim",
+		})
+		:set_title("Neovim Config")
+	window
+		:spawn_tab({
+			direction = "Right",
+			cwd = wezterm.home_dir,
+		})
+		:set_title("Home")
+	local htopTab = window:spawn_tab({
 		direction = "Right",
-		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/jooxter-webapp-react",
+		args = { "btop" },
+		cwd = wezterm.home_dir,
 	})
-	window:spawn_tab({
-		direction = "Right",
-		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/jooxter-webapp-angular",
-	})
-	window:spawn_tab({
-		direction = "Right",
-		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/jooxter-mobile",
-	})
-	window:spawn_tab({
-		direction = "Right",
-		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/front-analytics",
-	})
-	window:spawn_tab({
-		direction = "Right",
-		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/iot-managment",
-	})
+	htopTab:set_title("btop")
+end)
+
+-- tab bar style
+-- -- The filled in variant of the < symbol
+-- local SOLID_LEFT_ARROW = wezterm.nerdfonts.nf_ple_upper_left_triangle
+local SOLID_LEFT_ARROW = wezterm.nerdfonts.ple_lower_right_triangle
+
+-- The filled in variant of the > symbol
+-- local SOLID_RIGHT_ARROW = wezterm.nerdfonts.nf_ple_upper_right_triangle
+local SOLID_RIGHT_ARROW = wezterm.nerdfonts.ple_upper_left_triangle
+
+-- This function returns the suggested title for a tab.
+-- It prefers the title that was set via `tab:set_title()`
+-- or `wezterm cli set-tab-title`, but falls back to the
+-- title of the active pane in that tab.
+local function tab_title(tab_info)
+	local title = tab_info.tab_title
+	-- if the tab title is explicitly set, take that
+	if title and #title > 0 then
+		return title
+	end
+	-- Otherwise, use the title from the active pane
+	-- in that tab
+	return tab_info.active_pane.title
+end
+config.use_fancy_tab_bar = false
+config.tab_max_width = 1600
+
+wezterm.on("format-tab-title", function(tab, _, _, _, hover, max_width)
+	local edge_background = "#2a2a40"
+	local background = "#2a2a40"
+	local foreground = "#808080"
+
+	if tab.is_active then
+		background = "#0a0a23"
+		foreground = "#c0c0c0"
+	elseif hover then
+		background = "#1b1b32"
+		foreground = "#909090"
+	end
+
+	local edge_foreground = background
+
+	local title = tab_title(tab)
+
+	-- ensure that the titles fit in the available space,
+	-- and that we have room for the edges.
+	title = wezterm.truncate_right(title, max_width - 2)
+
+	return {
+		{ Background = { Color = edge_background } },
+		{ Foreground = { Color = edge_foreground } },
+		{ Text = SOLID_LEFT_ARROW },
+		{ Background = { Color = background } },
+		{ Foreground = { Color = foreground } },
+		{ Text = " " .. tab.tab_index .. " " .. "|" .. " " .. title .. "  " },
+		{ Background = { Color = edge_background } },
+		{ Foreground = { Color = edge_foreground } },
+		{ Text = SOLID_RIGHT_ARROW },
+	}
 end)
 
 -- and finally, return the configuration to wezterm
