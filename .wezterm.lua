@@ -99,7 +99,7 @@ wezterm.on("gui-startup", function()
   window
       :spawn_tab({
         direction = "Right",
-        cwd = wezterm.home_dir .. ".config/nvim",
+        cwd = wezterm.home_dir .. "/.config/nvim",
       })
       :set_title("Neovim Config")
   window
