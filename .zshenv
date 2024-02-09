@@ -19,6 +19,7 @@ if [ "$machine" = "Mac" ]; then
     export PATH=~/Library/Android/sdk/tools:$PATH
     export PATH=~/Library/Android/sdk/platform-tools:$PATH
     export PATH="$PATH:~/flutter/bin"
+    export PATH="/opt/homebrew/bin:$PATH"
     export JAVA_HOME=/Applications/Android\ Studio.app/Contents/jbr/Contents/Home
 elif [ "$machine" = "Linux" ]; then
     # code for GNU/Linux platform
