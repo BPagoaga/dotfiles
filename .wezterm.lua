@@ -135,6 +135,8 @@ local SOLID_LEFT_ARROW = wezterm.nerdfonts.ple_lower_right_triangle
 -- The filled in variant of the > symbol
 -- local SOLID_RIGHT_ARROW = wezterm.nerdfonts.nf_ple_upper_right_triangle
 local SOLID_RIGHT_ARROW = wezterm.nerdfonts.ple_upper_left_triangle
+local SLASH = wezterm.nerdfonts.fae_slash
+local ARROW_EXPAND_RIGHT = wezterm.nerdfonts.md_arrow_expand_right
 
 -- This function returns the suggested title for a tab.
 -- It prefers the title that was set via `tab:set_title()`
@@ -180,7 +182,10 @@ wezterm.on("format-tab-title", function(tab, _, _, _, hover, max_width)
     { Text = SOLID_LEFT_ARROW },
     { Background = { Color = background } },
     { Foreground = { Color = foreground } },
-    { Text = " " .. tab.tab_index + 1 .. " " .. "|" .. " " .. title .. "  " },
+    { Text = "  " .. tab.tab_index + 1 .. " " .. ARROW_EXPAND_RIGHT .. " " .. title .. "  " },
+    { Background = { Color = edge_foreground } },
+    { Foreground = { Color = "#909090" } },
+    { Text = SLASH },
     { Background = { Color = edge_background } },
     { Foreground = { Color = edge_foreground } },
     { Text = SOLID_RIGHT_ARROW },
