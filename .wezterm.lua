@@ -105,6 +105,12 @@ wezterm.on("gui-startup", function()
   window
       :spawn_tab({
         direction = "Right",
+        cwd = wezterm.home_dir .. "notes",
+      })
+      :set_title("Notes")
+  window
+      :spawn_tab({
+        direction = "Right",
         cwd = wezterm.home_dir,
       })
       :set_title("Home")
