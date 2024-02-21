@@ -110,15 +110,15 @@ wezterm.on("gui-startup", function()
 		:set_title("Home")
 	local htopTab = window:spawn_tab({
 		direction = "Right",
-		-- args = {
-		--   os.getenv 'SHELL',
-		--   '-c',
-		--   'btop' .. wezterm.shell_quote_arg(wezterm.config_file),
-		-- },
+		args = {
+			os.getenv("SHELL"),
+			"-c",
+			"btop",
+		},
 		cwd = wezterm.home_dir,
 	})
 	htopTab:set_title("btop")
-	htopTab:send_text("btop\n")
+	-- htopTab:send_text("btop\n")
 end)
 
 -- tab bar style
