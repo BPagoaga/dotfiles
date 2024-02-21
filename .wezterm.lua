@@ -99,9 +99,15 @@ wezterm.on("gui-startup", function()
 	window
 		:spawn_tab({
 			direction = "Right",
-			cwd = wezterm.home_dir .. "/.config/nvim",
+			cwd = wezterm.home_dir .. ".config/nvim",
 		})
 		:set_title("Neovim Config")
+	window
+		:spawn_tab({
+			direction = "Right",
+			cwd = wezterm.home_dir .. "notes",
+		})
+		:set_title("Notes")
 	window
 		:spawn_tab({
 			direction = "Right",
@@ -113,12 +119,11 @@ wezterm.on("gui-startup", function()
 		args = {
 			os.getenv("SHELL"),
 			"-c",
-			"btop",
+			"btop" .. wezterm.shell_quote_arg(wezterm.config_file),
 		},
 		cwd = wezterm.home_dir,
 	})
 	htopTab:set_title("btop")
-	-- htopTab:send_text("btop\n")
 end)
 
 -- tab bar style
