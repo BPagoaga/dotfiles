@@ -1,0 +1,11 @@
+import = [
+  "~/.config/alacritty/catppuccin-mocha.toml"
+]
+
+[window]
+decorations = "None"
+opacity = 0.9
+
+[font]
+normal = {family = "FiraCode Nerd Font", style = "SemiBold"}
+size = 12
