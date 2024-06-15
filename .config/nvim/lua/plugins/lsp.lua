@@ -6,6 +6,10 @@ return {
     keys[#keys + 1] = { "gvd", ":vsplit | lua vim.lsp.buf.definition()<CR>" }
   end,
   opts = {
+    inlay_hints = {
+      enabled = false,
+      exclude = {}, -- filetypes for which you don't want to enable inlay hints
+    },
     setup = {
       tsserver = function()
         local lspconfig = require("lspconfig")

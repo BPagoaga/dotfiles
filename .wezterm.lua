@@ -17,7 +17,7 @@ end
 config.color_scheme = "Catppuccin Mocha"
 
 config.font = wezterm.font("FiraCode Nerd Font", { weight = "DemiBold" })
-config.font_size = 10
+config.font_size = 12
 config.line_height = 1.2
 config.native_macos_fullscreen_mode = false
 

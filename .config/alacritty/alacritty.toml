@@ -1,11 +1,25 @@
 import = [
-  "~/.config/alacritty/catppuccin-mocha.toml"
+   "~/.config/alacritty/catppuccin-mocha.toml"
 ]
+
+[env]
+TERM = "xterm-256color"
 
 [window]
 decorations = "None"
-opacity = 0.9
+dynamic_padding = false
+opacity = 0.8
+blur = true
+startup_mode = "SimpleFullScreen"
 
 [font]
 normal = {family = "FiraCode Nerd Font", style = "SemiBold"}
 size = 12
+
+[keyboard]
+bindings = [
+  # ⌘ + enter puts window in macOS full screen mode
+  { key = "Enter", mods = "Command", action = "ToggleFullScreen" },
+  # ⌘ + ⇧ + enter maximizes the pane within the alacritty window
+  { key = "Enter", mods = "Command|Shift", action = "ToggleMaximized"},
+]
