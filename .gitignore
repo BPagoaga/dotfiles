@@ -1,13 +1,2 @@
 *
 !.gitignore
-!.zshrc
-!.zshenv
-# oh-my-zsh is a git repo, so it can't be read here
-# !.oh-my-zsh/
-!.tmux.conf
-!.tmux-layouts/*
-!.wezterm.lua
-!.config/
-!.config/wezterm/
-!.config/wezterm/colors/
-!.config/wezterm/colors/custom.toml
