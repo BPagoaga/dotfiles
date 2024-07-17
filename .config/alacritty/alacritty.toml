@@ -13,7 +13,7 @@ blur = true
 startup_mode = "FullScreen"
 
 [font]
-normal = {family = "FiraCode Nerd Font", style = "SemiBold"}
+normal = {family = "JetBrainsMono Nerd Font", style = "SemiBold"}
 size = 12
 
 [keyboard]

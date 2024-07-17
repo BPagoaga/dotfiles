@@ -55,3 +55,4 @@ export NODE_OPTIONS=--max-old-space-size=4096
 export PATH=$PATH:/usr/local/go/bin
 export WARP_THEMES_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/warp-terminal/themes"
 alias zed="$HOME/zed/target/release/Zed"
+alias lz="lazygit"

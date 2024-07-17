@@ -160,3 +160,4 @@ add-zsh-hook chpwd nvm_auto_use
 nvm_auto_use
 eval "$(starship init zsh)"
 
+

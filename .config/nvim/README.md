@@ -2,10 +2,7 @@
 
 ## List of relevant plugins to remember:
 
-- [Leap](https://github.com/ggandor/leap.nvim): quickly jump anywhere
-  - when using f/F/t/T, label the next occurrences for quick jump [flit](https://github.com/ggandor/flit.nvim)
-  - use s + 2 keys to jump to the searched word
-  - this plugin modify keys of mini.surround from `gs` to `gz`
+- [flash](https://github.com/folke/flash.nvim): quickly jump to location
 - [aerial](https://github.com/stevearc/aerial.nvim): open a tree of symbols `<leader>cs`
   - telescope integration : `<leader>ss`
 - [mini.surround](https://github.com/echasnovski/mini.surround?tab=readme-ov-file#features): surround with quotes, brackets, etc
