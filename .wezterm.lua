@@ -16,7 +16,7 @@ end
 -- config.color_scheme = "Freecodecamp dark theme"
 config.color_scheme = "Catppuccin Mocha"
 
-config.font = wezterm.font("FiraCode Nerd Font", { weight = "DemiBold" })
+config.font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Bold" })
 config.font_size = 12
 config.line_height = 1.2
 config.native_macos_fullscreen_mode = false
@@ -35,91 +35,97 @@ config.hide_tab_bar_if_only_one_tab = true
 config.tab_and_split_indices_are_zero_based = false
 
 local mux = wezterm.mux
-
 wezterm.on("gui-startup", function()
-	local servers_tab, servers_pane, window = mux.spawn_window({
+	local _, servers_pane, _ = mux.spawn_window({
 		cwd = wezterm.home_dir,
 	})
 	servers_pane:window():gui_window():toggle_fullscreen()
-
-	servers_pane:send_text("cd Documents/projects/jooxter/jooxter-webapp-react\n")
-	servers_pane:window():gui_window():maximize()
-	local fa_server_pane = servers_pane:split({
-		direction = "Right",
-		size = 0.333,
-		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/front-analytics",
-	})
-
-	servers_pane:split({
-		direction = "Bottom",
-		size = 0.333,
-		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/jooxter-webapp-angular",
-	})
-	servers_pane:split({
-		direction = "Bottom",
-		size = 0.5,
-		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/jooxter-mobile",
-	})
-	fa_server_pane:split({
-		direction = "Bottom",
-		size = 0.5,
-		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/iot-managment",
-	})
-	servers_tab:set_title("npm")
-
-	window
-		:spawn_tab({
-			direction = "Right",
-			cwd = wezterm.home_dir .. "/Documents/projects/jooxter/jooxter-webapp-react",
-		})
-		:set_title("JWR")
-	window
-		:spawn_tab({
-			direction = "Right",
-			cwd = wezterm.home_dir .. "/Documents/projects/jooxter/jooxter-webapp-angular",
-		})
-		:set_title("JWA")
-	window
-		:spawn_tab({
-			direction = "Right",
-			cwd = wezterm.home_dir .. "/Documents/projects/jooxter/jooxter-mobile",
-		})
-		:set_title("JM")
-	window
-		:spawn_tab({
-			direction = "Right",
-			cwd = wezterm.home_dir .. "/Documents/projects/jooxter/front-analytics",
-		})
-		:set_title("FA")
-	window
-		:spawn_tab({
-			direction = "Right",
-			cwd = wezterm.home_dir .. "/Documents/projects/jooxter/iot-managment",
-		})
-		:set_title("IOT")
-	window
-		:spawn_tab({
-			direction = "Right",
-			cwd = wezterm.home_dir .. "/.config/nvim",
-		})
-		:set_title("Neovim Config")
-	window
-		:spawn_tab({
-			direction = "Right",
-			cwd = wezterm.home_dir,
-		})
-		:set_title("Home")
-	local htopTab = window:spawn_tab({
-		direction = "Right",
-		args = {
-			os.getenv("SHELL"),
-			"-c",
-			"btop",
-		},
-		cwd = wezterm.home_dir,
-	})
-	htopTab:set_title("btop")
 end)
+--
+-- wezterm.on("gui-startup", function()
+-- 	local servers_tab, servers_pane, window = mux.spawn_window({
+-- 		cwd = wezterm.home_dir,
+-- 	})
+-- 	servers_pane:window():gui_window():toggle_fullscreen()
+--
+-- 	servers_pane:send_text("cd Documents/projects/jooxter/jooxter-webapp-react\n")
+-- 	servers_pane:window():gui_window():maximize()
+-- 	local fa_server_pane = servers_pane:split({
+-- 		direction = "Right",
+-- 		size = 0.333,
+-- 		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/front-analytics",
+-- 	})
+--
+-- 	servers_pane:split({
+-- 		direction = "Bottom",
+-- 		size = 0.333,
+-- 		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/jooxter-webapp-angular",
+-- 	})
+-- 	servers_pane:split({
+-- 		direction = "Bottom",
+-- 		size = 0.5,
+-- 		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/jooxter-mobile",
+-- 	})
+-- 	fa_server_pane:split({
+-- 		direction = "Bottom",
+-- 		size = 0.5,
+-- 		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/iot-managment",
+-- 	})
+-- 	servers_tab:set_title("npm")
+--
+-- 	window
+-- 		:spawn_tab({
+-- 			direction = "Right",
+-- 			cwd = wezterm.home_dir .. "/Documents/projects/jooxter/jooxter-webapp-react",
+-- 		})
+-- 		:set_title("JWR")
+-- 	window
+-- 		:spawn_tab({
+-- 			direction = "Right",
+-- 			cwd = wezterm.home_dir .. "/Documents/projects/jooxter/jooxter-webapp-angular",
+-- 		})
+-- 		:set_title("JWA")
+-- 	window
+-- 		:spawn_tab({
+-- 			direction = "Right",
+-- 			cwd = wezterm.home_dir .. "/Documents/projects/jooxter/jooxter-mobile",
+-- 		})
+-- 		:set_title("JM")
+-- 	window
+-- 		:spawn_tab({
+-- 			direction = "Right",
+-- 			cwd = wezterm.home_dir .. "/Documents/projects/jooxter/front-analytics",
+-- 		})
+-- 		:set_title("FA")
+-- 	window
+-- 		:spawn_tab({
+-- 			direction = "Right",
+-- 			cwd = wezterm.home_dir .. "/Documents/projects/jooxter/iot-managment",
+-- 		})
+-- 		:set_title("IOT")
+-- 	window
+-- 		:spawn_tab({
+-- 			direction = "Right",
+-- 			cwd = wezterm.home_dir .. "/.config/nvim",
+-- 		})
+-- 		:set_title("Neovim Config")
+-- 	window
+-- 		:spawn_tab({
+-- 			direction = "Right",
+-- 			cwd = wezterm.home_dir,
+-- 		})
+-- 		:set_title("Home")
+-- 	local htopTab = window:spawn_tab({
+-- 		direction = "Right",
+-- 		args = {
+-- 			os.getenv("SHELL"),
+-- 			"-c",
+-- 			"btop",
+-- 		},
+-- 		cwd = wezterm.home_dir,
+-- 	})
+-- 	htopTab:set_title("btop")
+-- end)
 
 -- tab bar style
 -- -- The filled in variant of the < symbol

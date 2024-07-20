@@ -4,6 +4,7 @@ return {
     local keys = require("lazyvim.plugins.lsp.keymaps").get()
     -- change a keymap
     keys[#keys + 1] = { "gvd", ":vsplit | lua vim.lsp.buf.definition()<CR>" }
+    keys[#keys + 2] = { "ghd", ":split | lua vim.lsp.buf.definition()<CR>" }
   end,
   opts = {
     inlay_hints = {

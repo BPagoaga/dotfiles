@@ -42,7 +42,7 @@ return {
         local builtin = require("telescope.builtin")
         builtin.registers()
       end,
-      desc = "Lists open buffers",
+      desc = "Lists registers",
     },
     {
       ";b",
