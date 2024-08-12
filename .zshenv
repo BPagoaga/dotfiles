@@ -56,3 +56,4 @@ export PATH=$PATH:/usr/local/go/bin
 export WARP_THEMES_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/warp-terminal/themes"
 alias zed="$HOME/zed/target/release/Zed"
 alias lz="lazygit"
+alias ls="eza -l --icons always"
