@@ -21,7 +21,8 @@ return {
         "yaml",
         "scss",
         "vim",
-        "vimdoc"
+        "vimdoc",
+        "http",
       },
     },
   },

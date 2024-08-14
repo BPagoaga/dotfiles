@@ -40,7 +40,7 @@ auto-format = true
 
 [[language]]
 name = "tsx"
-language-servers = [ "deno", "eslint", "emmet-ls" ]
+language-servers = [ "deno" ,"typescript-language-server", "eslint", "emmet-ls" ]
 formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
 auto-format = true
 
