@@ -36,6 +36,7 @@ return {
 
         lspconfig.angularls.setup({
           root_dir = util.root_pattern(".git", "package-lock.json", "yarn.lock"),
+          filetypes = { "typescript", "html", "htmlangular" },
         })
         return true
       end,

@@ -9,11 +9,10 @@ return {
       "angular-language-server",
       "emmet-language-server",
       "prettier",
-      "typescript-language-server",
       "yaml-language-server",
       "css-lsp",
       "sonarlint-language-server",
-      "chrome-debug-adapter"
+      "chrome-debug-adapter",
     },
   },
 }

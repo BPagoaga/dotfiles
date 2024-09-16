@@ -1,33 +1,37 @@
 -- Autocmds are automatically loaded on the VeryLazy event
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 -- Add any additional autocmds here
+local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
+
+-- General Settings
+local general = augroup("General", { clear = true })
 
 -- Turn off paste mode when leaving insert
-vim.api.nvim_create_autocmd("InsertLeave", {
+autocmd("InsertLeave", {
   pattern = "*",
   command = "set nopaste",
 })
 
-vim.api.nvim_create_autocmd({ "InsertLeave", "FocusLost", "BufLeave" }, {
-  pattern = "*",
+autocmd({ "FocusLost", "BufLeave", "BufWinLeave", "InsertLeave" }, {
+  -- nested = true, -- for format on save
   callback = function()
-    local buf = vim.api.nvim_get_current_buf()
-    local buf_modifiable = vim.api.nvim_get_option_value("modifiable", { buf = buf })
-
-    if buf_modifiable then
-      vim.cmd(":update")
+    if vim.bo.filetype ~= "" and vim.bo.buftype == "" then
+      vim.cmd("silent! w")
     end
   end,
+  group = general,
+  desc = "Auto Save",
 })
 
-vim.api.nvim_create_autocmd("BufWritePre", {
+autocmd("BufWritePre", {
   pattern = "*",
   callback = function(args)
     require("conform").format({ bufnr = args.buf })
   end,
 })
 
-vim.api.nvim_create_autocmd("FileType", {
+autocmd("FileType", {
   pattern = "dap-float",
   command = "nnoremap <buffer><silent> q <cmd>close!<CR>",
 })
@@ -38,7 +42,7 @@ vim.filetype.add({
   },
 })
 
-vim.api.nvim_create_autocmd("FileType", {
+autocmd("FileType", {
   pattern = "angular.html",
   callback = function()
     vim.treesitter.language.register("angular", "angular.html") -- Register the filetype with treesitter for the `angular` language/parser
