@@ -30,6 +30,16 @@ return {
         })
         return true
       end,
+      angularls = function()
+        local lspconfig = require("lspconfig")
+        local util = require("lspconfig.util")
+
+        lspconfig.angularls.setup({
+          root_dir = util.root_pattern(".git", "package-lock.json", "yarn.lock"),
+          filetypes = { "typescript", "html", "htmlangular" },
+        })
+        return true
+      end,
       emmet_language_server = function()
         local lspconfig = require("lspconfig")
         local util = require("lspconfig.util")
