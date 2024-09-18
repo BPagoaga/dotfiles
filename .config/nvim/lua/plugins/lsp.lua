@@ -12,11 +12,21 @@ return {
       exclude = {}, -- filetypes for which you don't want to enable inlay hints
     },
     setup = {
+      tsserver = function()
+        return true
+      end,
       vtsls = function()
-        local lspconfig = require("lspconfig")
+        -- local lspconfig = require("lspconfig")
+        -- local util = require("lspconfig.util")
+        --
+        -- lspconfig.vtsls.setup({
+        --   root_dir = util.root_pattern(".git", "package-lock.json", "yarn.lock"),
+        -- })
+        return true
+      end,
+      typescripttools = function()
         local util = require("lspconfig.util")
-
-        lspconfig.vtsls.setup({
+        require("typescript-tools").setup({
           root_dir = util.root_pattern(".git", "package-lock.json", "yarn.lock"),
         })
         return true
