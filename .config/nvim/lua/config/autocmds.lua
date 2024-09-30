@@ -24,6 +24,15 @@ autocmd({ "FocusLost", "BufLeave", "BufWinLeave", "InsertLeave" }, {
   desc = "Auto Save",
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "qf",
+  callback = function(event)
+    local opts = { buffer = event.buf, silent = true }
+    vim.keymap.set("n", "<C-n>", "<cmd>cn | wincmd p<CR>", opts)
+    vim.keymap.set("n", "<C-p>", "<cmd>cN | wincmd p<CR>", opts)
+  end,
+})
+
 autocmd("BufWritePre", {
   pattern = "*",
   callback = function(args)

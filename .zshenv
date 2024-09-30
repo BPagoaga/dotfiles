@@ -27,7 +27,7 @@ elif [ "$machine" = "Linux" ]; then
     export ANDROID_HOME="/home/bpagoaga/.android/android_sdk_root"
     export ANDROID_SDK_ROOT="/home/bpagoaga/.android/android_sdk_root"
     export CAPACITOR_ANDROID_STUDIO_PATH="/home/bpagoaga/android-studio/bin/studio.sh"
-    export JAVA_HOME="/usr/lib/jvm/temurin-21-jdk-amd64/bin"
+    export JAVA_HOME="/home/bpagoaga/.sdkman/candidates/java/current/bin/java"
     export PATH="$ANDROID_SDK_ROOT/platform-tools:$PATH"
     export PATH="/home/bpagoaga/neovim/bin:$PATH"
 fi
@@ -42,6 +42,7 @@ export EDITOR="vi"
 
 # avoid javascript heap out of memory error
 export NODE_OPTIONS=--max-old-space-size=4096
+
 export PATH=$PATH:/usr/local/go/bin
 alias zed="$HOME/zed/target/release/Zed"
 alias lz="lazygit"

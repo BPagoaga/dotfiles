@@ -31,9 +31,9 @@
   "scrollbar": {
     "show": "never"
   },
-  // "tab_bar": {
-  //   "show": false
-  // },
+  "tab_bar": {
+    "show": true
+  },
   "toolbar": {
     "breadcrumbs": true,
     "quick_actions": false
