@@ -1,3 +1,4 @@
+skip_global_compinit=1
 . "$HOME/.cargo/env"
 
 # Determine if running on linux or macos
@@ -37,20 +38,9 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="$HOME/.nvm/current/bin:$PATH"
 export NVM_SYMLINK_CURRENT=true
 export TERM="xterm-256color"
-[[ -n $TMUX ]] && export TERM="screen-256color"
-
-# Tmux
-export TMUXIFIER_LAYOUT_PATH="$HOME/.tmux-layouts"
-# export TMUXIFIER_TMUX_ITERM_ATTACH="-CC"
-
-# Bun
-export BUN_INSTALL="/Users/bernardpagoaga/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-export PATH="$HOME/.tmuxifier/bin:$PATH"
 export EDITOR="vi"
 
-# avoir javascript heap out of memory error
+# avoid javascript heap out of memory error
 export NODE_OPTIONS="--max-old-space-size=8192"
 
 export PATH=$PATH:/usr/local/go/bin
@@ -63,3 +53,4 @@ alias lz="lazygit"
 alias ls="eza -l --icons always"
 # alias yazi="$HOME/yazi/target/release/yazi"
 alias yz="yazi"
+alias logout="pkill -KILL -u bernardpagoaga"

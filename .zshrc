@@ -24,12 +24,12 @@ export ZSH="$HOME/.oh-my-zsh"
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
+zstyle ':omz:update' mode disabled  # disable automatic updates
 # zstyle ':omz:update' mode auto      # update automatically without asking
 # zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
+zstyle ':omz:update' frequency 13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
@@ -81,12 +81,6 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -109,32 +103,6 @@ case "${unameOut}" in
   MINGW*)     machine=MinGw;;
   *)          machine="UNKNOWN:${unameOut}"
 esac
-
-if [ "$machine" = "Mac" ]; then
-alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
-alias vscode="/Applications/Visual\ Studio\ Code.app/contents/Resources/app/bin/code"
-# bun completions
-[ -s "/Users/bernardpagoaga/.bun/_bun" ] && source "/Users/bernardpagoaga/.bun/_bun"
-elif [ "$machine" = "Linux" ]; then
-alias wezterm='flatpak run org.wezfurlong.wezterm'
-# bun completions
-[ -s "/home/bpagoaga/.bun/_bun" ] && source "/home/bpagoaga/.bun/_bun"
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/bpagoaga/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/bpagoaga/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/bpagoaga/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/bpagoaga/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-fi
 
 alias vi="nvim"
 alias vim="nvim"
