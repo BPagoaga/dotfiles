@@ -41,12 +41,17 @@ export TERM="xterm-256color"
 export EDITOR="vi"
 
 # avoid javascript heap out of memory error
-export NODE_OPTIONS=--max-old-space-size=4096
+export NODE_OPTIONS="--max-old-space-size=8192"
 
 export PATH=$PATH:/usr/local/go/bin
+export PATH="$HOME/yazi/target/release/yazi:$PATH"
+export PATH="$HOME/zed/target/release/Zed:$PATH"
+export PATH="$HOME/alacritty/target/release/alacritty:$PATH"
+export WARP_THEMES_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/warp-terminal/themes"
 alias zed="$HOME/zed/target/release/Zed"
 alias lz="lazygit"
 alias ls="eza -l --icons always"
+# alias yazi="$HOME/yazi/target/release/yazi"
 alias yz="yazi"
 alias logout="pkill -KILL -u bernardpagoaga"
 alias kitty="kitty --start-as fullscreen"
