@@ -28,20 +28,38 @@
 --     colorscheme = "solarized-osaka",
 --   },
 -- } }
+-- return {
+--   {
+--     "catppuccin/nvim",
+--     name = "catppuccin",
+--     lazy = true,
+--     priority = 1000,
+--     opts = {
+--       transparent_background = true,
+--     },
+--   },
+--   {
+--     "LazyVim/LazyVim",
+--     opts = {
+--       colorscheme = "catppuccin-mocha",
+--     },
+--   },
+-- }
+
 return {
   {
-    "catppuccin/nvim",
-    name = "catppuccin",
+    "folke/tokyonight.nvim",
     lazy = true,
     priority = 1000,
     opts = {
-      transparent_background = true,
+      style = "storm",
+      transparent = true,
     },
   },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin-mocha",
+      colorscheme = "tokyonight-storm",
     },
   },
 }

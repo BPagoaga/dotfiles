@@ -14,7 +14,8 @@ end
 
 -- For example, changing the color scheme:
 -- config.color_scheme = "Freecodecamp dark theme"
-config.color_scheme = "Catppuccin Mocha"
+-- config.color_scheme = "Catppuccin Mocha"
+config.color_scheme = "tokyonight-storm"
 -- timeout_milliseconds defaults to 1000 and can be omitted
 -- config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 500 }
 config.keys = {
@@ -28,10 +29,15 @@ config.keys = {
 		mods = "SHIFT|CTRL",
 		action = wezterm.action.ActivateTabRelative(1),
 	},
+	{
+		key = "s",
+		mods = "SHIFT|CTRL",
+		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+	},
 }
 
 config.font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Bold" })
-config.font_size = 10
+config.font_size = 12
 config.line_height = 1.2
 config.native_macos_fullscreen_mode = false
 
