@@ -32,6 +32,13 @@
     }
   },
   {
+    "context": "Pane && vim_mode == normal",
+    "bindings": {
+      "space b d": "pane::CloseActiveItem",
+      "space b P": "pane::CloseAllItems"
+    }
+  },
+  {
     "context": "Terminal",
     "bindings": {
       "cmd-t": "workspace::NewTerminal"
