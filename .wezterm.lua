@@ -49,6 +49,11 @@ config.keys = {
 		mods = "CTRL|SHIFT",
 		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
 	},
+	{
+		key = "w",
+		mods = "SUPER",
+		action = wezterm.action.CloseCurrentPane({ confirm = true }),
+	},
 }
 
 config.font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Bold" })
