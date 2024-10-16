@@ -3,7 +3,6 @@ local wezterm = require("wezterm")
 
 -- This table will hold the configuration.
 local config = {}
-
 -- In newer versions of wezterm, use the config_builder which will
 -- help provide clearer error messages
 if wezterm.config_builder then
@@ -11,33 +10,49 @@ if wezterm.config_builder then
 end
 
 -- This is where you actually apply your config choices
+-- timeout_milliseconds defaults to 1000 and can be omitted
+config.leader = { key = "a", mods = "SUPER", timeout_milliseconds = 1000 }
 
 -- For example, changing the color scheme:
 -- config.color_scheme = "Freecodecamp dark theme"
 -- config.color_scheme = "Catppuccin Mocha"
 config.color_scheme = "tokyonight-storm"
--- timeout_milliseconds defaults to 1000 and can be omitted
--- config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 500 }
 config.keys = {
+	-- Send "SUPER-A" to the terminal when pressing SUPER-A, SUPER-A
+	{
+		key = "a",
+		mods = "LEADER|SUPER",
+		action = wezterm.action.SendKey({ key = "a", mods = "SUPER" }),
+	},
 	{
 		key = "h",
-		mods = "SHIFT|CTRL",
+		mods = "CTRL|SHIFT",
 		action = wezterm.action.ActivateTabRelative(-1),
 	},
 	{
 		key = "l",
-		mods = "SHIFT|CTRL",
+		mods = "CTRL|SHIFT",
 		action = wezterm.action.ActivateTabRelative(1),
 	},
 	{
+		key = "l",
+		mods = "LEADER",
+		action = wezterm.action.ActivatePaneDirection("Right"),
+	},
+	{
+		key = "h",
+		mods = "LEADER",
+		action = wezterm.action.ActivatePaneDirection("Left"),
+	},
+	{
 		key = "s",
-		mods = "SHIFT|CTRL",
+		mods = "LEADER",
 		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
 	},
 }
 
 config.font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Bold" })
-config.font_size = 10
+config.font_size = 11
 config.line_height = 1.2
 config.native_macos_fullscreen_mode = false
 
