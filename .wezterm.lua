@@ -46,7 +46,7 @@ config.keys = {
 	},
 	{
 		key = "s",
-		mods = "LEADER",
+		mods = "CTRL|SHIFT",
 		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
 	},
 }
