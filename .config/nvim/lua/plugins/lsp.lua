@@ -16,19 +16,10 @@ return {
         return true
       end,
       vtsls = function()
-        -- local lspconfig = require("lspconfig")
-        -- local util = require("lspconfig.util")
-        --
-        -- lspconfig.vtsls.setup({
-        --   root_dir = util.root_pattern(".git", "package-lock.json", "yarn.lock"),
-        -- })
         return true
       end,
       typescripttools = function()
-        local util = require("lspconfig.util")
-        require("typescript-tools").setup({
-          root_dir = util.root_pattern(".git", "package-lock.json", "yarn.lock"),
-        })
+        require("typescript-tools").setup()
         return true
       end,
       eslint = function()
@@ -37,16 +28,6 @@ return {
 
         lspconfig.eslint.setup({
           root_dir = util.root_pattern(".eslintrc.js", ".eslintrc.json"),
-        })
-        return true
-      end,
-      angularls = function()
-        local lspconfig = require("lspconfig")
-        local util = require("lspconfig.util")
-
-        lspconfig.angularls.setup({
-          root_dir = util.root_pattern(".git", "package-lock.json", "yarn.lock"),
-          filetypes = { "typescript", "html", "htmlangular" },
         })
         return true
       end,
