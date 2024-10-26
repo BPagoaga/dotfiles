@@ -6,7 +6,7 @@ local config = {}
 -- In newer versions of wezterm, use the config_builder which will
 -- help provide clearer error messages
 if wezterm.config_builder then
-	config = wezterm.config_builder()
+  config = wezterm.config_builder()
 end
 
 -- This is where you actually apply your config choices
@@ -18,42 +18,42 @@ config.leader = { key = "a", mods = "SUPER", timeout_milliseconds = 1000 }
 -- config.color_scheme = "Catppuccin Mocha"
 config.color_scheme = "tokyonight-storm"
 config.keys = {
-	-- Send "SUPER-A" to the terminal when pressing SUPER-A, SUPER-A
-	{
-		key = "a",
-		mods = "LEADER|SUPER",
-		action = wezterm.action.SendKey({ key = "a", mods = "SUPER" }),
-	},
-	{
-		key = "h",
-		mods = "CTRL|SHIFT",
-		action = wezterm.action.ActivateTabRelative(-1),
-	},
-	{
-		key = "l",
-		mods = "CTRL|SHIFT",
-		action = wezterm.action.ActivateTabRelative(1),
-	},
-	{
-		key = "l",
-		mods = "LEADER",
-		action = wezterm.action.ActivatePaneDirection("Right"),
-	},
-	{
-		key = "h",
-		mods = "LEADER",
-		action = wezterm.action.ActivatePaneDirection("Left"),
-	},
-	{
-		key = "s",
-		mods = "CTRL|SHIFT",
-		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
-	},
-	{
-		key = "w",
-		mods = "SUPER",
-		action = wezterm.action.CloseCurrentPane({ confirm = true }),
-	},
+  -- Send "SUPER-A" to the terminal when pressing SUPER-A, SUPER-A
+  {
+    key = "a",
+    mods = "LEADER|SUPER",
+    action = wezterm.action.SendKey({ key = "a", mods = "SUPER" }),
+  },
+  {
+    key = "h",
+    mods = "CTRL|SHIFT",
+    action = wezterm.action.ActivateTabRelative(-1),
+  },
+  {
+    key = "l",
+    mods = "CTRL|SHIFT",
+    action = wezterm.action.ActivateTabRelative(1),
+  },
+  {
+    key = "l",
+    mods = "LEADER",
+    action = wezterm.action.ActivatePaneDirection("Right"),
+  },
+  {
+    key = "h",
+    mods = "LEADER",
+    action = wezterm.action.ActivatePaneDirection("Left"),
+  },
+  {
+    key = "s",
+    mods = "CTRL|SHIFT",
+    action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+  },
+  {
+    key = "w",
+    mods = "SUPER",
+    action = wezterm.action.CloseCurrentPane({ confirm = true }),
+  },
 }
 
 config.font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Bold" })
@@ -65,10 +65,10 @@ config.window_background_opacity = 0.95
 config.macos_window_background_blur = 20
 
 config.window_padding = {
-	left = 0,
-	right = 0,
-	top = 0,
-	bottom = 0,
+  left = 0,
+  right = 0,
+  top = 0,
+  bottom = 0,
 }
 
 config.hide_tab_bar_if_only_one_tab = true
@@ -76,10 +76,10 @@ config.tab_and_split_indices_are_zero_based = false
 
 local mux = wezterm.mux
 wezterm.on("gui-startup", function()
-	local _, servers_pane, _ = mux.spawn_window({
-		cwd = wezterm.home_dir,
-	})
-	servers_pane:window():gui_window():toggle_fullscreen()
+  local _, servers_pane, _ = mux.spawn_window({
+    cwd = wezterm.home_dir,
+  })
+  servers_pane:window():gui_window():maximize()
 end)
 --
 -- wezterm.on("gui-startup", function()
@@ -183,53 +183,53 @@ local ARROW_EXPAND_RIGHT = wezterm.nerdfonts.md_arrow_expand_right
 -- or `wezterm cli set-tab-title`, but falls back to the
 -- title of the active pane in that tab.
 local function tab_title(tab_info)
-	local title = tab_info.tab_title
-	-- if the tab title is explicitly set, take that
-	if title and #title > 0 then
-		return title
-	end
-	-- Otherwise, use the title from the active pane
-	-- in that tab
-	return tab_info.active_pane.title
+  local title = tab_info.tab_title
+  -- if the tab title is explicitly set, take that
+  if title and #title > 0 then
+    return title
+  end
+  -- Otherwise, use the title from the active pane
+  -- in that tab
+  return tab_info.active_pane.title
 end
 config.use_fancy_tab_bar = false
 config.tab_max_width = 1600
 
 wezterm.on("format-tab-title", function(tab, _, _, _, hover, max_width)
-	local edge_background = "#2a2a40"
-	local background = "#2a2a40"
-	local foreground = "#808080"
+  local edge_background = "#2a2a40"
+  local background = "#2a2a40"
+  local foreground = "#808080"
 
-	if tab.is_active then
-		background = "#0a0a23"
-		foreground = "#c0c0c0"
-	elseif hover then
-		background = "#1b1b32"
-		foreground = "#909090"
-	end
+  if tab.is_active then
+    background = "#0a0a23"
+    foreground = "#c0c0c0"
+  elseif hover then
+    background = "#1b1b32"
+    foreground = "#909090"
+  end
 
-	local edge_foreground = background
+  local edge_foreground = background
 
-	local title = tab_title(tab)
+  local title = tab_title(tab)
 
-	-- ensure that the titles fit in the available space,
-	-- and that we have room for the edges.
-	title = wezterm.truncate_right(title, max_width - 2)
+  -- ensure that the titles fit in the available space,
+  -- and that we have room for the edges.
+  title = wezterm.truncate_right(title, max_width - 2)
 
-	return {
-		{ Background = { Color = edge_background } },
-		{ Foreground = { Color = edge_foreground } },
-		{ Text = SOLID_LEFT_ARROW },
-		{ Background = { Color = background } },
-		{ Foreground = { Color = foreground } },
-		{ Text = "  " .. tab.tab_index + 1 .. " " .. ARROW_EXPAND_RIGHT .. " " .. title .. "  " },
-		{ Background = { Color = edge_foreground } },
-		{ Foreground = { Color = "#909090" } },
-		{ Text = SLASH },
-		{ Background = { Color = edge_background } },
-		{ Foreground = { Color = edge_foreground } },
-		{ Text = SOLID_RIGHT_ARROW },
-	}
+  return {
+    { Background = { Color = edge_background } },
+    { Foreground = { Color = edge_foreground } },
+    { Text = SOLID_LEFT_ARROW },
+    { Background = { Color = background } },
+    { Foreground = { Color = foreground } },
+    { Text = "  " .. tab.tab_index + 1 .. " " .. ARROW_EXPAND_RIGHT .. " " .. title .. "  " },
+    { Background = { Color = edge_foreground } },
+    { Foreground = { Color = "#909090" } },
+    { Text = SLASH },
+    { Background = { Color = edge_background } },
+    { Foreground = { Color = edge_foreground } },
+    { Text = SOLID_RIGHT_ARROW },
+  }
 end)
 
 -- and finally, return the configuration to wezterm
