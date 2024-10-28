@@ -57,8 +57,8 @@ config.keys = {
 }
 
 config.font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Bold" })
-config.font_size = 11
-config.line_height = 1.2
+config.font_size = 12
+config.line_height = 1.5
 config.native_macos_fullscreen_mode = false
 
 config.window_background_opacity = 0.95
