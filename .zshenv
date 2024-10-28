@@ -30,8 +30,6 @@ elif [ "$machine" = "Linux" ]; then
     export JAVA_HOME="/home/bpagoaga/.sdkman/candidates/java/current/bin/java"
     export PATH="$ANDROID_SDK_ROOT/platform-tools:$PATH"
     export PATH="/home/bpagoaga/neovim/bin:$PATH"
-    export PATH="$HOME/yazi/target/release/yazi:$PATH"
-    alias yazi="$HOME/yazi/target/release/yazi"
 fi
 
 export NVM_DIR="$HOME/.nvm"
