@@ -30,6 +30,8 @@ elif [ "$machine" = "Linux" ]; then
     export JAVA_HOME="/home/bpagoaga/.sdkman/candidates/java/current/bin/java"
     export PATH="$ANDROID_SDK_ROOT/platform-tools:$PATH"
     export PATH="/home/bpagoaga/neovim/bin:$PATH"
+    export PATH="$HOME/yazi/target/release/yazi:$PATH"
+    alias yazi="$HOME/yazi/target/release/yazi"
 fi
 
 export NVM_DIR="$HOME/.nvm"
@@ -44,14 +46,12 @@ export EDITOR="vi"
 export NODE_OPTIONS="--max-old-space-size=8192"
 
 export PATH=$PATH:/usr/local/go/bin
-export PATH="$HOME/yazi/target/release/yazi:$PATH"
 export PATH="$HOME/zed/target/release/Zed:$PATH"
 export PATH="$HOME/alacritty/target/release/alacritty:$PATH"
 export WARP_THEMES_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/warp-terminal/themes"
 alias zed="$HOME/zed/target/release/Zed"
 alias lz="lazygit"
 alias ls="eza -l --icons always"
-alias yazi="$HOME/yazi/target/release/yazi"
 alias yz="yazi"
 alias logout="pkill -KILL -u bernardpagoaga"
 alias kitty="kitty --start-as fullscreen"
