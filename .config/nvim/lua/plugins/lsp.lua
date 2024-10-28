@@ -12,25 +12,25 @@ return {
       exclude = {}, -- filetypes for which you don't want to enable inlay hints
     },
     setup = {
-      tsserver = function()
-        return true
-      end,
-      vtsls = function()
-        return true
-      end,
+      -- tsserver = function()
+      --   return true
+      -- end,
+      -- vtsls = function()
+      --   return true
+      -- end,
       typescripttools = function()
         require("typescript-tools").setup()
         return true
       end,
-      eslint = function()
-        local lspconfig = require("lspconfig")
-        local util = require("lspconfig.util")
-
-        lspconfig.eslint.setup({
-          root_dir = util.root_pattern(".eslintrc.js", ".eslintrc.json"),
-        })
-        return true
-      end,
+      -- eslint = function()
+      --   local lspconfig = require("lspconfig")
+      --   local util = require("lspconfig.util")
+      --
+      --   lspconfig.eslint.setup({
+      --     root_dir = util.root_pattern(".eslintrc.js", ".eslintrc.json"),
+      --   })
+      --   return true
+      -- end,
       emmet_language_server = function()
         local lspconfig = require("lspconfig")
         local util = require("lspconfig.util")
