@@ -39,7 +39,7 @@
   "clock": {
     "timezone": "Europe/Paris",
     "locale": "fr_FR.UTF-8",
-    "format": " {:%a %OH %b - %H:%M %Z}",
+    "format": " {:%a %Oe %b - %H:%M %Z}",
     "icon-size": 32,
   },
   "cpu": {
