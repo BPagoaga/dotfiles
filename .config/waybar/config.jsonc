@@ -18,6 +18,8 @@
     "network",
     "battery",
     "custom/lock",
+    "custom/suspend",
+    "custom/hibernate",
     "custom/power",
   ],
   "hyprland/workspaces": {
@@ -37,7 +39,7 @@
   "clock": {
     "timezone": "Europe/Paris",
     "locale": "fr_FR.UTF-8",
-    "format": " {:%a %OH %b - %H:%M %Z}",
+    "format": " {:%a %Oe %b - %H:%M %Z}",
     "icon-size": 32,
   },
   "cpu": {
@@ -103,15 +105,19 @@
     "on-click": "sh -c '(sleep 0.5s; hyprlock)' & disown",
     "format": "",
   },
+  "custom/suspend": {
+    "tooltip": false,
+    "on-click": "systemctl suspend",
+    "format": "󰒲",
+  },
+  "custom/hibernate": {
+    "tooltip": false,
+    "on-click": "systemctl hibernate",
+    "format": "",
+  },
   "custom/power": {
     "tooltip": false,
-    "menu": "on-click",
-    "menu-actions": {
-      "shutdown": "shutdown",
-      "reboot": "reboot",
-      "suspend": "systemctl suspend",
-      "hibernate": "systemctl hibernate",
-    },
+    "on-click": "shutdown",
     "format": "⏻ ",
   },
 }

@@ -38,7 +38,9 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="$HOME/.nvm/current/bin:$PATH"
 export NVM_SYMLINK_CURRENT=true
 export TERM="xterm-256color"
-export EDITOR="vi"
+export EDITOR="vim"
+alias vi="nvim"
+alias vim="nvim"
 
 # avoid javascript heap out of memory error
 export NODE_OPTIONS="--max-old-space-size=8192"

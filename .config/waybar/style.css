@@ -75,6 +75,8 @@ window#waybar {
 #network,
 #pulseaudio,
 #custom-lock,
+#custom-suspend,
+#custom-hibernate,
 #custom-power {
   background-color: @surface0;
   padding: 0.5rem 1rem;
@@ -116,6 +118,13 @@ window#waybar {
 
 #custom-lock {
   border-radius: 1rem 0px 0px 1rem;
+  color: @lavender;
+  margin-right: 0;
+}
+
+#custom-suspend,
+#custom-hibernate {
+  border-radius: 0;
   color: @lavender;
   margin-right: 0;
 }
