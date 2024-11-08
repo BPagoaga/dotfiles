@@ -104,8 +104,6 @@ case "${unameOut}" in
   *)          machine="UNKNOWN:${unameOut}"
 esac
 
-alias vi="nvim"
-alias vim="nvim"
 
 nvm_auto_use() {
   local node_version="$(nvm version)"
@@ -127,9 +125,6 @@ nvm_auto_use() {
 add-zsh-hook chpwd nvm_auto_use
 nvm_auto_use
 eval "$(starship init zsh)"
-eval $(ssh-agent)
-
-
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
