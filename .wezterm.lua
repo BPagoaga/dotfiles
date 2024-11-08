@@ -79,7 +79,7 @@ wezterm.on("gui-startup", function()
 	local _, servers_pane, _ = mux.spawn_window({
 		cwd = wezterm.home_dir,
 	})
-	servers_pane:window():gui_window():maximize()
+	servers_pane:window():gui_window():toggle_fullscreen()
 end)
 --
 -- wezterm.on("gui-startup", function()
