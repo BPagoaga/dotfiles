@@ -12,6 +12,8 @@ end
 -- This is where you actually apply your config choices
 -- timeout_milliseconds defaults to 1000 and can be omitted
 config.leader = { key = "a", mods = "SUPER", timeout_milliseconds = 1000 }
+config.max_fps = 144
+config.animation_fps = 144
 
 -- For example, changing the color scheme:
 -- config.color_scheme = "Freecodecamp dark theme"
