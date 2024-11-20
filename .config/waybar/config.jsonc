@@ -11,17 +11,24 @@
     "memory",
     "temperature",
   ],
-  "modules-center": ["hyprland/workspaces", "clock"],
-  "modules-right": [
-    "pulseaudio",
-    "bluetooth",
-    "network",
-    "battery",
-    "custom/lock",
-    "custom/suspend",
-    "custom/hibernate",
-    "custom/power",
-  ],
+  "modules-center": ["hyprland/workspaces", "custom/chromium", "clock"],
+  "modules-right": ["pulseaudio", "bluetooth", "network", "battery"],
+  "custom/chromium": {
+    "format": "{icon} {}",
+    "escape": true,
+    // "return-type": "json",
+    "return-type": "text",
+    "max-length": 40,
+    "interval": 30, // Remove this if your script is endless and write in loop
+    "on-click": "playerctl -p chromium play-pause",
+    "on-click-right": "killall chromium",
+    "smooth-scrolling-threshold": 10, // This value was tested using a trackpad, it should be lowered if using a mouse.
+    "on-scroll-up": "playerctl -p chromium next",
+    "on-scroll-down": "playerctl -p chromium previous",
+    "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null", // Script in resources/custom_modules folder
+    // "exec": "echo '$HOME/.config/waybar/mediaplayer.py'", // Script in resources/custom_modules folder
+    // "exec-if": "pgrep chromium",
+  },
   "hyprland/workspaces": {
     "disable-scroll": true,
     "sort-by-name": true,
@@ -117,7 +124,7 @@
   },
   "custom/power": {
     "tooltip": false,
-    "on-click": "shutdown",
+    "on-click": "shutdown now",
     "format": "⏻ ",
   },
 }

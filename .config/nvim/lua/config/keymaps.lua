@@ -78,3 +78,22 @@ keymap.set("n", "<C-w><down>", "<C-w>-")
 keymap.set("n", "<C-j>", function()
   vim.diagnostic.goto_next()
 end, opts)
+keymap.set("n", "<C-k>", function()
+  vim.diagnostic.goto_prev()
+end, opts)
+vim.keymap.set("n", "Q", "<nop>")
+vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+
+-- vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+-- vim.keymap.set("n", "<leader><leader>", function()
+--     vim.cmd("so")
+-- end)
+
+-- Keymaps for better default experience
+-- See `:help vim.keymap.set()`
+vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
+
+-- Remap for dealing with word wrap
+vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })

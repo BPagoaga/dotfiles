@@ -13,18 +13,18 @@ autocmd("InsertLeave", {
   command = "set nopaste",
 })
 
-autocmd({ "FocusLost", "BufLeave", "BufWinLeave", "InsertLeave" }, {
-  -- nested = true, -- for format on save
-  callback = function()
-    if vim.bo.filetype ~= "" and vim.bo.buftype == "" then
-      vim.cmd("silent! w")
-    end
-  end,
-  group = general,
-  desc = "Auto Save",
-})
+-- autocmd({ "FocusLost", "BufLeave", "BufWinLeave", "InsertLeave" }, {
+--   -- nested = true, -- for format on save
+--   callback = function()
+--     if vim.bo.filetype ~= "" and vim.bo.buftype == "" then
+--       vim.cmd("silent! w")
+--     end
+--   end,
+--   group = general,
+--   desc = "Auto Save",
+-- })
 
-vim.api.nvim_create_autocmd("FileType", {
+autocmd("FileType", {
   pattern = "qf",
   callback = function(event)
     local opts = { buffer = event.buf, silent = true }
