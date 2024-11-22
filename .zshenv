@@ -11,8 +11,6 @@ case "${unameOut}" in
   *)          machine="UNKNOWN:${unameOut}"
 esac
 
-echo ${machine}
-
 if [ "$machine" = "Mac" ]; then
     # code for macOS platform        
     export PATH=/Users/bernardpagoaga/.local/bin:$PATH
