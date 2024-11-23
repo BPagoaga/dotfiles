@@ -10,8 +10,6 @@ if wezterm.config_builder then
 end
 
 -- This is where you actually apply your config choices
--- timeout_milliseconds defaults to 1000 and can be omitted
-config.leader = { key = "a", mods = "SUPER", timeout_milliseconds = 1000 }
 config.max_fps = 144
 config.animation_fps = 144
 
@@ -20,12 +18,6 @@ config.animation_fps = 144
 -- config.color_scheme = "Catppuccin Mocha"
 config.color_scheme = "tokyonight-storm"
 config.keys = {
-	-- Send "SUPER-A" to the terminal when pressing SUPER-A, SUPER-A
-	{
-		key = "a",
-		mods = "LEADER|SUPER",
-		action = wezterm.action.SendKey({ key = "a", mods = "SUPER" }),
-	},
 	{
 		key = "h",
 		mods = "CTRL|SHIFT",
@@ -45,6 +37,16 @@ config.keys = {
 		key = "h",
 		mods = "SUPER|SHIFT",
 		action = wezterm.action.ActivatePaneDirection("Left"),
+	},
+	{
+		key = "j",
+		mods = "SUPER|SHIFT",
+		action = wezterm.action.ActivatePaneDirection("Down"),
+	},
+	{
+		key = "k",
+		mods = "SUPER|SHIFT",
+		action = wezterm.action.ActivatePaneDirection("Up"),
 	},
 	{
 		key = "s",
