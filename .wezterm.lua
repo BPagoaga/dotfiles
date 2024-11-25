@@ -60,8 +60,35 @@ config.keys = {
 	},
 }
 
+function Recompute_font_size(window)
+	local My_font_size = 12.0
+	local Font_size = My_font_size
+	local window_dims = window:get_dimensions()
+	local overrides = window:get_config_overrides() or {}
+	local Dpi = window_dims.dpi / 96
+	local Scale_factor_general = 7
+	local Scale_factor_x = window_dims.pixel_width / (Scale_factor_general * 9 * Dpi)
+	local Scale_factor_y = window_dims.pixel_height / (Scale_factor_general * 9 * Dpi)
+	local Scale_factor = Scale_factor_x
+
+	if Scale_factor_y > Scale_factor_x then
+		Scale_factor = Scale_factor_x
+	else
+		Scale_factor = Scale_factor_y
+	end
+
+	if Scale_factor > My_font_size then
+		Font_size = My_font_size
+	else
+		Font_size = math.floor(Scale_factor)
+	end
+
+	overrides.font_size = Font_size
+
+	window:set_config_overrides(overrides)
+end
+
 config.font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Bold" })
-config.font_size = 12
 config.line_height = 1.5
 config.native_macos_fullscreen_mode = false
 
@@ -83,7 +110,9 @@ wezterm.on("gui-startup", function()
 	local _, servers_pane, _ = mux.spawn_window({
 		cwd = wezterm.home_dir,
 	})
-	servers_pane:window():gui_window():toggle_fullscreen()
+	local window = servers_pane:window():gui_window()
+	window:toggle_fullscreen()
+	Recompute_font_size(window)
 end)
 --
 -- wezterm.on("gui-startup", function()
