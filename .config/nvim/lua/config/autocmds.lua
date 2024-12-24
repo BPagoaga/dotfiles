@@ -2,10 +2,18 @@
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 -- Add any additional autocmds here
 local autocmd = vim.api.nvim_create_autocmd
-local augroup = vim.api.nvim_create_augroup
 
--- General Settings
-local general = augroup("General", { clear = true })
+autocmd("RecordingEnter", {
+  callback = function()
+    vim.api.nvim_set_hl(0, "Cursor", { bg = "#6327A6" })
+  end,
+})
+
+autocmd("RecordingLeave", {
+  callback = function()
+    vim.api.nvim_set_hl(0, "Cursor", { bg = "#000000" })
+  end,
+})
 
 -- Turn off paste mode when leaving insert
 autocmd("InsertLeave", {

@@ -4,6 +4,7 @@
 
 -- If no prettier config file is found, the formatter will not be used
 vim.g.lazyvim_prettier_needs_config = true
+vim.g.root_spec = { { ".git", "lua" }, "cwd", "lsp" }
 
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
@@ -20,7 +21,7 @@ vim.opt.updatetime = 100
 vim.opt.spell = true
 vim.opt.spelllang = { "en_us", "fr" }
 vim.opt.colorcolumn = "120"
-
+vim.opt.swapfile = false
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
 vim.cmd([[let &t_Ce = "\e[4:0m"]])
