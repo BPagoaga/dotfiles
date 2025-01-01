@@ -1,6 +1,5 @@
 return {
   "telescope.nvim",
-  enabled = false,
   dependencies = {
     {
       "nvim-telescope/telescope-fzf-native.nvim",
@@ -36,6 +35,15 @@ return {
         builtin.live_grep()
       end,
       desc = "Search for a string in your current working directory and get results live as you type, respects .gitignore",
+    },
+    {
+      ",r",
+      function()
+        local root_dir = vim.fn.findfile("package.json", ".;")
+        local builtin = require("telescope.builtin")
+        builtin.live_grep({ cwd = root_dir })
+      end,
+      desc = "Search for a string in the current package.json directory and get results live as you type, respects .gitignore",
     },
     {
       ";'",
@@ -94,7 +102,7 @@ return {
       desc = "Lists Function names, variables, from Treesitter",
     },
     {
-      "sf",
+      ",sf",
       function()
         local telescope = require("telescope")
 

@@ -19,3 +19,5 @@
 	trustExitCode = true
 [diff]
 	tool = vimdiff
+[init]
+	defaultBranch = main
