@@ -1,5 +1,22 @@
 return {
   "folke/snacks.nvim",
+  keys = {
+    -- {
+    --   -- scratch new
+    --   "<leader>snn",
+    --   function()
+    --     Snacks.scratch()
+    --   end,
+    --   desc = "Toggle Scratch Buffer",
+    -- },
+    {
+      "<leader>snn",
+      function()
+        Snacks.scratch.select()
+      end,
+      desc = "Select Scratch Buffer",
+    },
+  },
   opts = {
     dashboard = {
       -- These settings are used by some built-in sections
@@ -61,5 +78,9 @@ return {
         },
       },
     },
+    scratch = {
+      root = vim.fn.expand("$HOME/Nextcloud/Notes") .. "/scratch",
+    },
+    scroll = { enabled = false },
   },
 }
