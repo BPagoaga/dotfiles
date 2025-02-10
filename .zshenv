@@ -43,6 +43,7 @@ alias vim="nvim"
 # avoid javascript heap out of memory error
 export NODE_OPTIONS="--max-old-space-size=8192"
 
+export HELIX_RUNTIME="$HOME/helix/runtime"
 export PATH=$PATH:/usr/local/go/bin
 export PATH="$HOME/zed/target/release/Zed:$PATH"
 export PATH="$HOME/alacritty/target/release/alacritty:$PATH"
@@ -50,8 +51,8 @@ export WARP_THEMES_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/warp-terminal/theme
 alias zed="$HOME/zed/target/release/Zed"
 alias lz="lazygit"
 alias lzd="lazydocker"
-alias ls="eza -l --icons always"
-alias ll="eza -l --icons always"
+alias lss="eza -l --icons always"
+alias lll="eza -l --icons always"
 alias yz="yazi"
 alias logout="pkill -KILL -u bernardpagoaga"
 alias kitty="kitty --start-as fullscreen"

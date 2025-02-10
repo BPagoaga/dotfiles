@@ -36,7 +36,7 @@ vim.filetype.add({
 })
 
 -- grug-far
-vim.g.maplocalleader = ","
+vim.g.maplocalleader = "!"
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
@@ -56,4 +56,3 @@ vim.opt.inccommand = "split"
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
-vim.g.lazyvim_picker = "telescope"

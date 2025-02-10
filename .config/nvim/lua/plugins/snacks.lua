@@ -1,16 +1,16 @@
 return {
   "folke/snacks.nvim",
   keys = {
-    -- {
-    --   -- scratch new
-    --   "<leader>snn",
-    --   function()
-    --     Snacks.scratch()
-    --   end,
-    --   desc = "Toggle Scratch Buffer",
-    -- },
     {
-      "<leader>snn",
+      -- scratch new
+      "<localleader>sn",
+      function()
+        Snacks.scratch()
+      end,
+      desc = "Toggle Scratch Buffer",
+    },
+    {
+      "<localleader>st",
       function()
         Snacks.scratch.select()
       end,
