@@ -2,7 +2,7 @@ return {
   "folke/snacks.nvim",
   keys = {
     {
-      -- scratch new
+      -- scratch
       "<localleader>sn",
       function()
         Snacks.scratch()
@@ -15,6 +15,110 @@ return {
         Snacks.scratch.select()
       end,
       desc = "Select Scratch Buffer",
+    },
+    -- picker
+    {
+      ";f",
+      function()
+        Snacks.picker.files()
+      end,
+      desc = "Find Files",
+    },
+    {
+      ";:",
+      function()
+        Snacks.picker.search_history()
+      end,
+      desc = "Find Files",
+    },
+    {
+      ";u",
+      function()
+        Snacks.picker.undo()
+      end,
+      desc = "Undo",
+    },
+    {
+      "<leader>e",
+      function()
+        Snacks.explorer({
+          layout = { preset = "default", preview = true },
+          auto_close = true,
+        })
+      end,
+      desc = "File explorer",
+    },
+    {
+      ";;",
+      function()
+        Snacks.picker.resume()
+      end,
+      desc = "Resume last picker",
+    },
+    {
+      ";r",
+      function()
+        Snacks.picker.grep()
+      end,
+      desc = "Grep",
+    },
+    {
+      ";rb",
+      function()
+        Snacks.picker.grep_buffers()
+      end,
+      desc = "Grep Open Buffers",
+    },
+    {
+      ";d",
+      function()
+        Snacks.picker.diagnostics()
+      end,
+      desc = "Diagnostics",
+    },
+    {
+      ";db",
+      function()
+        Snacks.picker.diagnostics_buffer()
+      end,
+      desc = "Buffer Diagnostics",
+    },
+    {
+      ";n",
+      function()
+        Snacks.picker.notifications()
+      end,
+      desc = "Notification History",
+    },
+    {
+      ";y",
+      function()
+        Snacks.picker.registers()
+      end,
+      desc = "Registers",
+    },
+    {
+      ";s",
+      function()
+        Snacks.picker.smart()
+      end,
+      desc = "Smart Find Files",
+    },
+    {
+      ";b",
+      function()
+        Snacks.picker.buffers({
+          current = false,
+        })
+      end,
+      desc = "Find Buffers",
+    },
+    {
+      "<leader>tt",
+      function()
+        Snacks.terminal.toggle()
+      end,
+      desc = "Open terminal",
     },
   },
   opts = {
@@ -82,5 +186,36 @@ return {
       root = vim.fn.expand("$HOME/Nextcloud/Notes") .. "/scratch",
     },
     scroll = { enabled = false },
+    terminal = {
+      -- your terminal configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+    picker = {
+      source = {
+        "buffers",
+        "diagnostics",
+        "diagnostics_buffer",
+        explorer = {
+          layout = { preset = "default", preview = true },
+          auto_close = true,
+        },
+        "files",
+        "grep",
+        "grep_buffers",
+        "lsp_config",
+        "lsp_declarations",
+        "lsp_definitions",
+        "lsp_implementations",
+        "lsp_references",
+        "lsp_symbols",
+        "lsp_type_definitions",
+        "marks",
+        "notifications",
+        "registers",
+        "search_history",
+        "smart",
+      },
+    },
   },
 }
