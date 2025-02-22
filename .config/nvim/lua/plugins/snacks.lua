@@ -20,7 +20,19 @@ return {
     {
       ";f",
       function()
-        Snacks.picker.files()
+        local utils = require("lspconfig.util")
+        local root = utils.root_pattern("package-lock.json", "yarn.lock", ".git")(".")
+        Snacks.picker.files({
+          cwd = root,
+          hidden = true,
+        })
+      end,
+      desc = "Find Files",
+    },
+    {
+      "<leader>space",
+      function()
+        Snacks.picker.files({ cwd = vim.fn.expand("$HOME") })
       end,
       desc = "Find Files",
     },
@@ -114,11 +126,26 @@ return {
       desc = "Find Buffers",
     },
     {
+      ";p",
+      function()
+        Snacks.picker.projects({
+          patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "package-lock.json", "Makefile", "yarn.lock" },
+        })
+      end,
+    },
+    {
       "<leader>tt",
       function()
         Snacks.terminal.toggle()
       end,
       desc = "Open terminal",
+    },
+    {
+      "<leader>gg",
+      function()
+        Snacks.lazygit()
+      end,
+      desc = "Open lazygit",
     },
   },
   opts = {
@@ -191,6 +218,7 @@ return {
       -- or leave it empty to use the default settings
       -- refer to the configuration section below
     },
+    lazygit = {},
     picker = {
       source = {
         "buffers",
