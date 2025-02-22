@@ -46,6 +46,7 @@ export NODE_OPTIONS="--max-old-space-size=8192"
 export HELIX_RUNTIME="$HOME/helix/runtime"
 export PATH=$PATH:/usr/local/go/bin
 export PATH="$HOME/zed/target/release/Zed:$PATH"
+export PATH="$HOME/neovim/bin:$PATH"
 export PATH="$HOME/alacritty/target/release/alacritty:$PATH"
 export WARP_THEMES_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/warp-terminal/themes"
 alias zed="$HOME/zed/target/release/Zed"
