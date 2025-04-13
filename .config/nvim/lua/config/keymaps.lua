@@ -27,32 +27,32 @@ keymap.set("v", '<leader>"', 'c"<Esc>pa"<Esc>')
 keymap.set("v", "<leader>'", "c'<Esc>pa'<Esc>")
 
 -- move lines up and down
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- keep whatever is in the register when pasting / deleting
-vim.keymap.set("x", "<leader>p", [["_dP]])
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+keymap.set("x", "<leader>p", [["_dP]])
+keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- rewatch the primeagen video on vim motions cuz that shit is useless
-vim.keymap.set("n", "J", "mzJ`z")
+keymap.set("n", "J", "mzJ`z")
 
 -- center cursor on the screen when scrolling up and down
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
+keymap.set("n", "<C-d>", "<C-d>zz")
+keymap.set("n", "<C-u>", "<C-u>zz")
 
 -- when searching, keep the highlight in the center of the screen
-vim.keymap.set("n", "n", "nzzzv")
+keymap.set("n", "n", "nzzzv")
 -- same but backward
-vim.keymap.set("n", "N", "Nzzzv")
+keymap.set("n", "N", "Nzzzv")
 
 -- go to next and previous error and center it
-vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
+keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
 
 -- go to next and previous location and center it
-vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
-vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
+keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 -- Add line under the cursor and stay in normal mode
 keymap.set("n", "<leader>o", "o<Esc>", opts)
@@ -81,8 +81,8 @@ end, opts)
 keymap.set("n", "<C-k>", function()
   vim.diagnostic.goto_prev()
 end, opts)
-vim.keymap.set("n", "Q", "<nop>")
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+keymap.set("n", "Q", "<nop>")
+keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
 -- vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
@@ -92,8 +92,11 @@ vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
-vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
+keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
 -- Remap for dealing with word wrap
-vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
+-- faster escape in terminal
+keymap.set("t", "esc", "<C-\\><C-n>")

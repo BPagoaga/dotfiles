@@ -18,7 +18,7 @@ return {
     },
     -- picker
     {
-      ";f",
+      "<leader>ff",
       function()
         local utils = require("lspconfig.util")
         local root = utils.root_pattern("package-lock.json", "yarn.lock", ".git")(".")
@@ -30,103 +30,52 @@ return {
       desc = "Find Files",
     },
     {
-      "<leader>space",
+      "<leader> ",
       function()
-        Snacks.picker.files({ cwd = vim.fn.expand("$HOME") })
+        Snacks.picker.files({ cwd = vim.fn.expand("$HOME"), hidden = true })
       end,
       desc = "Find Files",
-    },
-    {
-      ";:",
-      function()
-        Snacks.picker.search_history()
-      end,
-      desc = "Find Files",
-    },
-    {
-      ";u",
-      function()
-        Snacks.picker.undo()
-      end,
-      desc = "Undo",
     },
     {
       "<leader>e",
       function()
+        local utils = require("lspconfig.util")
+        local root = utils.root_pattern("package-lock.json", "yarn.lock", ".git")(".")
         Snacks.explorer({
           layout = { preset = "default", preview = true },
+          cwd = root,
+          ignored = true,
+          hidden = true,
           auto_close = true,
         })
       end,
       desc = "File explorer",
     },
     {
-      ";;",
+      "<leader>;",
       function()
         Snacks.picker.resume()
       end,
       desc = "Resume last picker",
     },
     {
-      ";r",
+      "<leader>sg",
       function()
-        Snacks.picker.grep()
+        local utils = require("lspconfig.util")
+        local package = utils.root_pattern("package.json")(".")
+        Snacks.picker.grep({ cwd = package })
       end,
-      desc = "Grep",
+      desc = "Grep in current package",
     },
     {
-      ";rb",
-      function()
-        Snacks.picker.grep_buffers()
-      end,
-      desc = "Grep Open Buffers",
-    },
-    {
-      ";d",
-      function()
-        Snacks.picker.diagnostics()
-      end,
-      desc = "Diagnostics",
-    },
-    {
-      ";db",
-      function()
-        Snacks.picker.diagnostics_buffer()
-      end,
-      desc = "Buffer Diagnostics",
-    },
-    {
-      ";n",
-      function()
-        Snacks.picker.notifications()
-      end,
-      desc = "Notification History",
-    },
-    {
-      ";y",
-      function()
-        Snacks.picker.registers()
-      end,
-      desc = "Registers",
-    },
-    {
-      ";s",
+      "<leader>ss",
       function()
         Snacks.picker.smart()
       end,
       desc = "Smart Find Files",
     },
     {
-      ";b",
-      function()
-        Snacks.picker.buffers({
-          current = false,
-        })
-      end,
-      desc = "Find Buffers",
-    },
-    {
-      ";p",
+      "<leader>fp",
       function()
         Snacks.picker.projects({
           patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "package-lock.json", "Makefile", "yarn.lock" },
@@ -134,11 +83,18 @@ return {
       end,
     },
     {
+      "<leader>to",
+      function()
+        Snacks.terminal.open()
+      end,
+      desc = "Open terminal",
+    },
+    {
       "<leader>tt",
       function()
         Snacks.terminal.toggle()
       end,
-      desc = "Open terminal",
+      desc = "Toggle terminal",
     },
     {
       "<leader>gg",

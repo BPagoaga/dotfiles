@@ -2,6 +2,8 @@ theme = "tokyonight_storm"
 
 [editor]
 line-number = "relative"
+# Minimum severity to show a diagnostic after the end of a line:
+end-of-line-diagnostics = "hint"
 
 [editor.cursor-shape]
 insert = "bar"

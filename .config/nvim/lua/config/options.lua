@@ -28,7 +28,7 @@ vim.opt.swapfile = false
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
 vim.cmd([[let &t_Ce = "\e[4:0m"]])
 
--- kuala
+-- kulala
 vim.filetype.add({
   extension = {
     ["http"] = "http",
@@ -56,3 +56,12 @@ vim.opt.inccommand = "split"
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
+vim.opt.diffopt = {
+  "internal",
+  "filler",
+  "closeoff",
+  "context:12",
+  "algorithm:histogram",
+  "linematch:200",
+  "indent-heuristic",
+}

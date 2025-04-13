@@ -3,7 +3,7 @@ local js_based_languages = {
   "javascript",
   "typescriptreact",
   "javascriptreact",
-  "vue"
+  "vue",
 }
 
 return {
@@ -119,6 +119,7 @@ return {
       },
     },
     dependencies = {
+      { "igorlfs/nvim-dap-view", opts = {} },
       -- Install the vscode-js-debug adapter
       {
         "microsoft/vscode-js-debug",
