@@ -105,6 +105,25 @@ return {
     },
   },
   opts = {
+    ---@class snacks.scroll.Config
+    ---@field animate snacks.animate.Config|{}
+    ---@field animate_repeat snacks.animate.Config|{}|{delay:number}
+    scroll = {
+      animate = {
+        duration = { step = 15, total = 80 },
+        easing = "inOutCubic",
+      },
+      -- faster animation when repeating scroll after delay
+      animate_repeat = {
+        delay = 100, -- delay in ms before using the repeat animation
+        duration = { step = 5, total = 50 },
+        easing = "linear",
+      },
+      -- what buffers to animate
+      filter = function(buf)
+        return vim.g.snacks_scroll ~= false and vim.b[buf].snacks_scroll ~= false and vim.bo[buf].buftype ~= "terminal"
+      end,
+    },
     dashboard = {
       -- These settings are used by some built-in sections
       preset = {
@@ -168,7 +187,6 @@ return {
     scratch = {
       root = vim.fn.expand("$HOME/Nextcloud/Notes") .. "/scratch",
     },
-    scroll = { enabled = false },
     terminal = {
       -- your terminal configuration comes here
       -- or leave it empty to use the default settings

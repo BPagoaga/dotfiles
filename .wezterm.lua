@@ -54,6 +54,11 @@ config.keys = {
 		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
 	},
 	{
+		key = "d",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
+	},
+	{
 		key = "w",
 		mods = "SUPER",
 		action = wezterm.action.CloseCurrentPane({ confirm = true }),
@@ -67,12 +72,13 @@ function Recompute_font_size(window)
 	local overrides = window:get_config_overrides() or {}
 
 	if window_dims.pixel_width == 1920 then
-		Font_size = 10
+		Font_size = 12
 	elseif window_dims.pixel_width < 1920 then
-		Font_size = 8
+		Font_size = 10
 	end
 
 	overrides.font_size = Font_size
+	overrides.line_height = Font_size / 8
 
 	window:set_config_overrides(overrides)
 end
@@ -82,8 +88,8 @@ config.font_size = 10
 config.line_height = 1.5
 config.native_macos_fullscreen_mode = false
 
-config.window_background_opacity = 0.95
-config.macos_window_background_blur = 20
+config.window_background_opacity = 0.90
+config.macos_window_background_blur = 30
 
 config.window_padding = {
 	left = 0,

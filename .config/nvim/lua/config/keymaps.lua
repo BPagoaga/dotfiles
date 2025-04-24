@@ -38,8 +38,8 @@ keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 keymap.set("n", "J", "mzJ`z")
 
 -- center cursor on the screen when scrolling up and down
-keymap.set("n", "<C-d>", "<C-d>zz")
-keymap.set("n", "<C-u>", "<C-u>zz")
+-- keymap.set("n", "<C-d>", "<C-d>zz")
+-- keymap.set("n", "<C-u>", "<C-u>zz")
 
 -- when searching, keep the highlight in the center of the screen
 keymap.set("n", "n", "nzzzv")
