@@ -15,6 +15,7 @@ if [ "$machine" = "Mac" ]; then
     # code for macOS platform        
     export PATH=/Users/bernardpagoaga/.local/bin:$PATH
 
+    export ANDROID_HOME=~/Library/Android/sdk/
     export PATH=~/Library/Android/sdk/tools:$PATH
     export PATH=~/Library/Android/sdk/platform-tools:$PATH
     export PATH="$PATH:~/flutter/bin"
@@ -52,8 +53,8 @@ export WARP_THEMES_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/warp-terminal/theme
 alias zed="$HOME/zed/target/release/Zed"
 alias lz="lazygit"
 alias lzd="lazydocker"
-alias lss="eza -l --icons always"
-alias lll="eza -l --icons always"
+alias ls="eza -l --icons always"
+alias ll="eza -l --icons always"
 alias yz="yazi"
 alias logout="pkill -KILL -u bernardpagoaga"
 alias kitty="kitty --start-as fullscreen"
