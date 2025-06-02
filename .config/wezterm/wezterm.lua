@@ -1,4 +1,16 @@
--- Pull in the wezterm API
+-- local wezterm = require 'wezterm'
+-- local mux = wezterm.mux
+--
+-- wezterm.on('gui-startup', function(window)
+--   local tab, pane, window = mux.spawn_window(cmd or {})
+--   local gui_window = window:gui_window();
+--   gui_window:perform_action(wezterm.action.ToggleFullScreen, pane)
+-- end)
+--
+-- return {
+--   native_macos_fullscreen_mode = true
+-- }-- Pull in the wezterm API
+
 local wezterm = require("wezterm")
 
 -- This table will hold the configuration.
@@ -65,6 +77,86 @@ config.keys = {
 	},
 }
 
+function Open_tabs(servers_tab, servers_pane, window)
+	servers_pane:send_text("cd Documents/projects/jooxter/jooxter-webapp-react\n")
+	-- servers_pane:send_text("cd ~/Documents/projects/jooxter/jooxter-webapp-react")
+	-- local fa_server_pane = servers_pane:split({
+	-- 	direction = "Right",
+	-- 	size = 0.333,
+	-- 	cwd = wezterm.home_dir .. "/Documents/projects/jooxter/front-analytics",
+	-- })
+	--
+	-- servers_pane:split({
+	-- 	direction = "Bottom",
+	-- 	size = 0.333,
+	-- 	cwd = wezterm.home_dir .. "/Documents/projects/jooxter/jooxter-webapp-angular",
+	-- })
+	-- servers_pane:split({
+	-- 	direction = "Bottom",
+	-- 	size = 0.5,
+	-- 	cwd = wezterm.home_dir .. "/Documents/projects/jooxter/jooxter-mobile",
+	-- })
+	-- fa_server_pane:split({
+	-- 	direction = "Bottom",
+	-- 	size = 0.5,
+	-- 	cwd = wezterm.home_dir .. "/Documents/projects/jooxter/iot-managment",
+	-- })
+	-- servers_tab:set_title("npm")
+	--
+	-- window
+	-- 	:spawn_tab({
+	-- 		direction = "Right",
+	-- 		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/jooxter-webapp-react",
+	-- 	})
+	-- 	:set_title("JWR")
+	-- window
+	-- 	:spawn_tab({
+	-- 		direction = "Right",
+	-- 		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/jooxter-webapp-angular",
+	-- 	})
+	-- 	:set_title("JWA")
+	-- window
+	-- 	:spawn_tab({
+	-- 		direction = "Right",
+	-- 		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/jooxter-mobile",
+	-- 	})
+	-- 	:set_title("JM")
+	-- window
+	-- 	:spawn_tab({
+	-- 		direction = "Right",
+	-- 		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/front-analytics",
+	-- 	})
+	-- 	:set_title("FA")
+	-- window
+	-- 	:spawn_tab({
+	-- 		direction = "Right",
+	-- 		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/iot-managment",
+	-- 	})
+	-- 	:set_title("IOT")
+	-- window
+	-- 	:spawn_tab({
+	-- 		direction = "Right",
+	-- 		cwd = wezterm.home_dir .. "/.config/nvim",
+	-- 	})
+	-- 	:set_title("Neovim Config")
+	-- window
+	-- 	:spawn_tab({
+	-- 		direction = "Right",
+	-- 		cwd = wezterm.home_dir,
+	-- 	})
+	-- 	:set_title("Home")
+	-- local htopTab = window:spawn_tab({
+	-- 	direction = "Right",
+	-- 	args = {
+	-- 		os.getenv("SHELL"),
+	-- 		"-c",
+	-- 		"btop",
+	-- 	},
+	-- 	cwd = wezterm.home_dir,
+	-- })
+	-- htopTab:set_title("btop")
+end
+
 function Recompute_font_size(window)
 	local My_font_size = 12.0
 	local Font_size = My_font_size
@@ -102,105 +194,22 @@ config.hide_tab_bar_if_only_one_tab = true
 config.tab_and_split_indices_are_zero_based = false
 
 local mux = wezterm.mux
+
 wezterm.on("gui-startup", function()
-	local _, servers_pane, _ = mux.spawn_window({
+	local servers_tab, servers_pane, window = mux.spawn_window({
 		cwd = wezterm.home_dir,
 	})
-	local window = servers_pane:window():gui_window()
-	window:toggle_fullscreen()
+
+	local gui_window = window:gui_window()
+	gui_window:perform_action(wezterm.action.ToggleFullScreen, servers_pane)
 	Recompute_font_size(window)
+	servers_pane:send_text("cd Documents/projects/jooxter/jooxter-webapp-react\n")
+	Open_tabs(servers_tab, servers_pane, window)
 end)
 
 wezterm.on("window-resized", function(window)
 	Recompute_font_size(window)
 end)
-
---
--- wezterm.on("gui-startup", function()
--- 	local servers_tab, servers_pane, window = mux.spawn_window({
--- 		cwd = wezterm.home_dir,
--- 	})
--- 	servers_pane:window():gui_window():toggle_fullscreen()
---
--- 	servers_pane:send_text("cd Documents/projects/jooxter/jooxter-webapp-react\n")
--- 	servers_pane:window():gui_window():maximize()
--- 	local fa_server_pane = servers_pane:split({
--- 		direction = "Right",
--- 		size = 0.333,
--- 		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/front-analytics",
--- 	})
---
--- 	servers_pane:split({
--- 		direction = "Bottom",
--- 		size = 0.333,
--- 		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/jooxter-webapp-angular",
--- 	})
--- 	servers_pane:split({
--- 		direction = "Bottom",
--- 		size = 0.5,
--- 		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/jooxter-mobile",
--- 	})
--- 	fa_server_pane:split({
--- 		direction = "Bottom",
--- 		size = 0.5,
--- 		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/iot-managment",
--- 	})
--- 	servers_tab:set_title("npm")
---
--- 	window
--- 		:spawn_tab({
--- 			direction = "Right",
--- 			cwd = wezterm.home_dir .. "/Documents/projects/jooxter/jooxter-webapp-react",
--- 		})
--- 		:set_title("JWR")
--- 	window
--- 		:spawn_tab({
--- 			direction = "Right",
--- 			cwd = wezterm.home_dir .. "/Documents/projects/jooxter/jooxter-webapp-angular",
--- 		})
--- 		:set_title("JWA")
--- 	window
--- 		:spawn_tab({
--- 			direction = "Right",
--- 			cwd = wezterm.home_dir .. "/Documents/projects/jooxter/jooxter-mobile",
--- 		})
--- 		:set_title("JM")
--- 	window
--- 		:spawn_tab({
--- 			direction = "Right",
--- 			cwd = wezterm.home_dir .. "/Documents/projects/jooxter/front-analytics",
--- 		})
--- 		:set_title("FA")
--- 	window
--- 		:spawn_tab({
--- 			direction = "Right",
--- 			cwd = wezterm.home_dir .. "/Documents/projects/jooxter/iot-managment",
--- 		})
--- 		:set_title("IOT")
--- 	window
--- 		:spawn_tab({
--- 			direction = "Right",
--- 			cwd = wezterm.home_dir .. "/.config/nvim",
--- 		})
--- 		:set_title("Neovim Config")
--- 	window
--- 		:spawn_tab({
--- 			direction = "Right",
--- 			cwd = wezterm.home_dir,
--- 		})
--- 		:set_title("Home")
--- 	local htopTab = window:spawn_tab({
--- 		direction = "Right",
--- 		args = {
--- 			os.getenv("SHELL"),
--- 			"-c",
--- 			"btop",
--- 		},
--- 		cwd = wezterm.home_dir,
--- 	})
--- 	htopTab:set_title("btop")
--- end)
-
 -- tab bar style
 -- -- The filled in variant of the < symbol
 -- local SOLID_LEFT_ARROW = wezterm.nerdfonts.nf_ple_upper_left_triangle
