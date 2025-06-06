@@ -1,11 +1,10 @@
-#!/bin/bash
-set -euo pipefail # Strict error handling
+#!/usr/bin/env bash
 URL=https://raw.githubusercontent.com/BPagoaga/dotfiles/refs/heads/main/
 GIT=https://github.com/BPagoaga/dotfiles.git
 
 # deps
 echo "Installing dependencies..."
-sudo pacman -Sy zsh wlogout waybar fuzzel dunst xdg-desktop-portal-gtk ly niri tealdeer yazi ffmpeg 7zip jq poppler fd ripgrep fzf zoxide imagemagick btop
+sudo pacman -Sy zsh wlogout waybar fuzzel dunst xdg-desktop-portal-gtk ly niri tealdeer yazi ffmpeg 7zip jq poppler fd ripgrep fzf zoxide imagemagick btop 2>install_errors.log
 
 # change shell to zsh
 echo "Changing default shell to zsh..."
