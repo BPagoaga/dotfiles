@@ -4,18 +4,18 @@ GIT=https://github.com/BPagoaga/dotfiles.git
 
 # deps
 echo "Installing dependencies..."
-sudo pacman -Sy --needed --noconfirm zsh wlogout waybar fuzzel dunst xdg-desktop-portal-gtk ly niri tealdeer yazi ffmpeg 7zip jq poppler fd ripgrep fzf zoxide imagemagick btop 2>/dev/null || true
+pacman -Sy --needed --noconfirm zsh wlogout waybar fuzzel dunst xdg-desktop-portal-gtk ly niri tealdeer yazi ffmpeg 7zip jq poppler fd ripgrep fzf zoxide imagemagick btop 2>/dev/null || true
 
 # change shell to zsh
 echo "Changing default shell to zsh..."
-sudo chsh -s /usr/bin/zsh
+chsh -s /usr/bin/zsh
 
 #install oh-my-zsh
 echo "Installing oh-my-zsh..."
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # install dotbare
-ehco "Installing dotbare..."
+echo "Installing dotbare..."
 git clone https://github.com/kazhala/dotbare.git $HOME/.oh-my-zsh/custom/plugins/dotbare
 
 # use direct config files for convenience
@@ -30,8 +30,8 @@ dotbare finit -u $GIT
 
 # disable getty on tty2 and enable ly
 echo "Disabling getty on tty2 and enabling ly..."
-sudo systemctl enable ly.service
-sudo systemctl disable getty@tty2.service
+systemctl enable ly.service
+systemctl disable getty@tty2.service
 
 # install wezterm
 echo "Installing wezterm..."
