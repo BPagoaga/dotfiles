@@ -1,10 +1,10 @@
-#!/usr/bin/env bash
+#!/bin/bash
 URL=https://raw.githubusercontent.com/BPagoaga/dotfiles/refs/heads/main/
 GIT=https://github.com/BPagoaga/dotfiles.git
 
 # deps
 echo "Installing dependencies..."
-sudo pacman -Sy --needed --noconfirm zsh wlogout waybar fuzzel dunst xdg-desktop-portal-gtk ly niri tealdeer yazi ffmpeg 7zip jq poppler fd ripgrep fzf zoxide imagemagick btop 2>install_errors.log || true
+sudo pacman -Sy --needed --noconfirm zsh wlogout waybar fuzzel dunst xdg-desktop-portal-gtk ly niri tealdeer yazi ffmpeg 7zip jq poppler fd ripgrep fzf zoxide imagemagick btop || true
 
 # change shell to zsh
 echo "Changing default shell to zsh..."
