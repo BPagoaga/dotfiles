@@ -58,3 +58,4 @@ alias ll="eza -l --icons always"
 alias yz="yazi"
 alias logout="pkill -KILL -u bernardpagoaga"
 alias kitty="kitty --start-as fullscreen"
+alias wezter = cargo run --release --bin wezterm -- start
