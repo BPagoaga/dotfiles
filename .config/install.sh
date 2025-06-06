@@ -1,3 +1,4 @@
+#!/bin/sh
 URL="https://raw.githubusercontent.com/BPagoaga/dotfiles/refs/heads/main/"
 GIT=https://github.com/BPagoaga/dotfiles.git
 
