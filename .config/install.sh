@@ -4,7 +4,7 @@ GIT=https://github.com/BPagoaga/dotfiles.git
 
 # deps
 echo "Installing dependencies..."
-sudo pacman -Sy zsh wlogout waybar fuzzel dunst xdg-desktop-portal-gtk ly niri tealdeer yazi ffmpeg 7zip jq poppler fd ripgrep fzf zoxide imagemagick btop 2>install_errors.log
+sudo pacman -Sy --needed --noconfirm zsh wlogout waybar fuzzel dunst xdg-desktop-portal-gtk ly niri tealdeer yazi ffmpeg 7zip jq poppler fd ripgrep fzf zoxide imagemagick btop 2>install_errors.log || true
 
 # change shell to zsh
 echo "Changing default shell to zsh..."
