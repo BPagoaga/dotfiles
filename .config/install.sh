@@ -1,4 +1,4 @@
-URL="https://raw.githubusercontent.com/BPagoaga/dotfiles/main/"
+URL="https://raw.githubusercontent.com/BPagoaga/dotfiles/ref/heads/main/"
 GIT=https://github.com/BPagoaga/dotfiles.git
 
 # deps
