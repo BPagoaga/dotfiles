@@ -1,5 +1,6 @@
 #!/bin/bash
-URL="https://raw.githubusercontent.com/BPagoaga/dotfiles/refs/heads/main/"
+set -euo pipefail # Strict error handling
+URL=https://raw.githubusercontent.com/BPagoaga/dotfiles/refs/heads/main/
 GIT=https://github.com/BPagoaga/dotfiles.git
 
 # deps
@@ -8,7 +9,7 @@ sudo pacman -Sy zsh wlogout waybar fuzzel dunst xdg-desktop-portal-gtk ly niri t
 
 # change shell to zsh
 echo "Changing default shell to zsh..."
-chsh -s /usr/bin/zsh
+sudo chsh -s /usr/bin/zsh
 
 #install oh-my-zsh
 echo "Installing oh-my-zsh..."
