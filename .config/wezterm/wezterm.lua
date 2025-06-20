@@ -24,6 +24,33 @@ end
 -- This is where you actually apply your config choices
 config.max_fps = 144
 config.animation_fps = 144
+config.use_fancy_tab_bar = false
+config.tab_max_width = 1600
+config.font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Bold" })
+config.font_size = 10
+config.line_height = 1.5
+config.native_macos_fullscreen_mode = false
+config.window_background_opacity = 0.90
+config.window_frame = {
+	border_left_width = "1",
+	border_right_width = "1",
+	border_bottom_height = "1",
+	border_top_height = "1",
+	border_left_color = "#2ac3de",
+	border_right_color = "#2ac3de",
+	border_bottom_color = "#2ac3de",
+	border_top_color = "#2ac3de",
+}
+config.macos_window_background_blur = 30
+config.window_padding = {
+	left = 0,
+	right = 0,
+	top = 0,
+	bottom = 0,
+}
+config.hide_tab_bar_if_only_one_tab = true
+config.tab_and_split_indices_are_zero_based = false
+config.window_decorations = "RESIZE"
 
 -- For example, changing the color scheme:
 -- config.color_scheme = "Freecodecamp dark theme"
@@ -175,24 +202,6 @@ function Recompute_font_size(window)
 	window:set_config_overrides(overrides)
 end
 
-config.font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Bold" })
-config.font_size = 10
-config.line_height = 1.5
-config.native_macos_fullscreen_mode = false
-
-config.window_background_opacity = 0.90
-config.macos_window_background_blur = 30
-
-config.window_padding = {
-	left = 0,
-	right = 0,
-	top = 0,
-	bottom = 0,
-}
-
-config.hide_tab_bar_if_only_one_tab = true
-config.tab_and_split_indices_are_zero_based = false
-
 local mux = wezterm.mux
 
 wezterm.on("gui-startup", function()
@@ -201,7 +210,8 @@ wezterm.on("gui-startup", function()
 	})
 
 	local gui_window = window:gui_window()
-	gui_window:perform_action(wezterm.action.ToggleFullScreen, servers_pane)
+	-- gui_window:perform_action(wezterm.action.ToggleFullScreen, servers_pane)
+	gui_window:maximize()
 	Recompute_font_size(window)
 	servers_pane:send_text("cd Documents/projects/jooxter/jooxter-webapp-react\n")
 	Open_tabs(servers_tab, servers_pane, window)
@@ -235,8 +245,6 @@ local function tab_title(tab_info)
 	-- in that tab
 	return tab_info.active_pane.title
 end
-config.use_fancy_tab_bar = false
-config.tab_max_width = 1600
 
 wezterm.on("format-tab-title", function(tab, _, _, _, hover, max_width)
 	local edge_background = "#2a2a40"
