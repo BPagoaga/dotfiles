@@ -17,18 +17,18 @@ return {
       desc = "Select Scratch Buffer",
     },
     -- picker
-    {
-      "<leader>ff",
-      function()
-        local utils = require("lspconfig.util")
-        local root = utils.root_pattern("package-lock.json", "yarn.lock", ".git")(".")
-        Snacks.picker.files({
-          cwd = root,
-          hidden = true,
-        })
-      end,
-      desc = "Find Files",
-    },
+    -- {
+    --   "<leader>ff",
+    --   function()
+    --     local utils = require("lspconfig.util")
+    --     local root = utils.root_pattern("package-lock.json", "yarn.lock", ".git")(".")
+    --     Snacks.picker.files({
+    --       cwd = root,
+    --       hidden = true,
+    --     })
+    --   end,
+    --   desc = "Find Files",
+    -- },
     {
       "<leader> ",
       function()
@@ -37,13 +37,27 @@ return {
       desc = "Find Files",
     },
     {
-      "<leader>e",
+      "<leader>E",
+      -- for monorepo
       function()
         local utils = require("lspconfig.util")
-        local root = utils.root_pattern("package-lock.json", "yarn.lock", ".git")(".")
+        local cwd = utils.root_pattern("package.json", "yarn.lock", ".git")(".")
+        Snacks.notify(cwd)
         Snacks.explorer({
           layout = { preset = "default", preview = true },
-          cwd = root,
+          cwd = cwd,
+          ignored = true,
+          hidden = true,
+          auto_close = true,
+        })
+      end,
+      desc = "File explorer",
+    },
+    {
+      "<leader>e",
+      function()
+        Snacks.explorer({
+          layout = { preset = "default", preview = true },
           ignored = true,
           hidden = true,
           auto_close = true,
@@ -105,6 +119,11 @@ return {
     },
   },
   opts = {
+    styles = {
+      dashboard = {
+        border = "none",
+      },
+    },
     ---@class snacks.scroll.Config
     ---@field animate snacks.animate.Config|{}
     ---@field animate_repeat snacks.animate.Config|{}|{delay:number}
@@ -139,15 +158,7 @@ return {
           { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
           { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
           { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
-          {
-            icon = " ",
-            key = "c",
-            desc = "Config",
-            action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
-          },
           { icon = " ", key = "s", desc = "Restore Session", section = "session" },
-          { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
-          { icon = " ", key = "q", desc = "Quit", action = ":qa" },
         },
         -- Used by the `header` section
         header = [[
@@ -161,27 +172,75 @@ return {
       sections = {
         { section = "header" },
         { icon = " ", title = "Keymaps", section = "keys", indent = 2, padding = 1 },
-        { pane = 2, icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
-        { pane = 2, icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
-        { section = "startup" },
-        {
-          pane = 3,
-          section = "terminal",
-          cmd = "nerdfetch",
-          padding = 1,
-        },
+        { pane = 1, icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
+        { pane = 1, icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
+        function(opts)
+          local lazy_stats = require("lazy.stats").stats()
+          opts = opts or {}
+          local ms = (math.floor(lazy_stats.startuptime * 100 + 0.5) / 100)
+          -- local icon = opts.icon or "⚡ "
+          local icon = opts.icon or " 🍒 "
+          local infos = vim.fn.api_info()
+          local version = infos.version.major .. "." .. infos.version.minor .. "." .. infos.version.patch
+          Snacks.notify(version)
+
+          return {
+            section = "startup",
+            opts = {
+              align = "center",
+              text = {
+                { icon .. "Neovim loaded ", hl = "footer" },
+                { lazy_stats.loaded .. "/" .. lazy_stats.count, hl = "special" },
+                { " plugins in ", hl = "footer" },
+                { ms .. "ms", hl = "special" },
+                { " Version " .. version, hl = "footer" },
+              },
+            },
+          }
+        end,
         {
           pane = 2,
-          icon = " ",
-          title = "Git Status",
-          section = "terminal",
-          enabled = vim.fn.isdirectory(".git") == 1,
-          cmd = "hub status --short --branch --renames",
-          height = 5,
+          icon = " ",
+          desc = "Browse Repo",
           padding = 1,
-          ttl = 5 * 60,
-          indent = 3,
+          key = "b",
+          action = function()
+            Snacks.gitbrowse()
+          end,
+          enabled = function()
+            return Snacks.git.get_root() ~= nil
+          end,
         },
+        function()
+          local in_git = Snacks.git.get_root() ~= nil
+          local cmds = {
+            {
+              icon = " ",
+              title = "Open PRs",
+              cmd = "gh pr list -L 8",
+              key = "P",
+              action = function()
+                vim.fn.jobstart("gh pr list --web", { detach = true })
+              end,
+            },
+            {
+              icon = " ",
+              title = "Git Status",
+              cmd = "hub status --short --branch --renames",
+              ttl = 5 * 60,
+            },
+          }
+          return vim.tbl_map(function(cmd)
+            return vim.tbl_extend("force", {
+              pane = 2,
+              section = "terminal",
+              enabled = in_git,
+              padding = 1,
+              ttl = 5 * 60,
+              indent = 3,
+            }, cmd)
+          end, cmds)
+        end,
       },
     },
     scratch = {

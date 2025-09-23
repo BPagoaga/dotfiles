@@ -15,9 +15,11 @@ if [ "$machine" = "Mac" ]; then
     # code for macOS platform        
     export PATH=/Users/bernardpagoaga/.local/bin:$PATH
 
-    export ANDROID_HOME=~/Library/Android/sdk/
-    export PATH=~/Library/Android/sdk/tools:$PATH
-    export PATH=~/Library/Android/sdk/platform-tools:$PATH
+    export ANDROID_HOME=$HOME/Library/Android/sdk
+    export PATH=$PATH:$ANDROID_HOME/emulator
+    export PATH=$PATH:$ANDROID_HOME/tools
+    export PATH=$PATH:$ANDROID_HOME/tools/bin
+    export PATH=$PATH:$ANDROID_HOME/platform-tools
     export PATH="$PATH:~/flutter/bin"
     export PATH="/opt/homebrew/bin:$PATH"
     export JAVA_HOME=/Applications/Android\ Studio.app/Contents/jbr/Contents/Home

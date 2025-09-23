@@ -100,3 +100,6 @@ keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true }
 
 -- faster escape in terminal
 keymap.set("t", "esc", "<C-\\><C-n>")
+
+-- Aider keymaps
+keymap.set("n", "<leader>Ao", ":AiderOpen --model openai/claude-3.7-sonnet --subtree --no-gitignore<CR>", opts)

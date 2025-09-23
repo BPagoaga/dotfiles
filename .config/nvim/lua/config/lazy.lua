@@ -58,6 +58,10 @@ require("lazy").setup({
     enabled = true, -- check for plugin updates periodically
     notify = false, -- notify on update
   }, -- automatically check for plugin updates
+  experimental = {
+    -- this will improve startup time, but may have some issues with lazy loading so disabled for now
+    checker = false, -- check for plugin updates
+  },
   performance = {
     rtp = {
       -- disable some rtp plugins
