@@ -31,16 +31,16 @@ config.font_size = 10
 config.line_height = 1.5
 config.native_macos_fullscreen_mode = false
 config.window_background_opacity = 0.90
-config.window_frame = {
-	border_left_width = "1",
-	border_right_width = "1",
-	border_bottom_height = "1",
-	border_top_height = "1",
-	border_left_color = "#2ac3de",
-	border_right_color = "#2ac3de",
-	border_bottom_color = "#2ac3de",
-	border_top_color = "#2ac3de",
-}
+-- config.window_frame = {
+-- 	border_left_width = "1",
+-- 	border_right_width = "1",
+-- 	border_bottom_height = "1",
+-- 	border_top_height = "1",
+-- 	border_left_color = "#2ac3de",
+-- 	border_right_color = "#2ac3de",
+-- 	border_bottom_color = "#2ac3de",
+-- 	border_top_color = "#2ac3de",
+-- }
 config.macos_window_background_blur = 30
 config.window_padding = {
 	left = 0,
