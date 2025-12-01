@@ -31,6 +31,7 @@ elif [ "$machine" = "Linux" ]; then
     export JAVA_HOME="/home/bpagoaga/.sdkman/candidates/java/current/bin/java"
     export PATH="$ANDROID_SDK_ROOT/platform-tools:$PATH"
     export PATH="/home/bpagoaga/neovim/bin:$PATH"
+    export PATH="$HOME/android/bin:$PATH"
 fi
 
 export NVM_DIR="$HOME/.nvm"
