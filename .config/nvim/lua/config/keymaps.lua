@@ -76,19 +76,13 @@ keymap.set("n", "<C-w><down>", "<C-w>-")
 
 -- Diagnostics
 keymap.set("n", "<C-j>", function()
-  vim.diagnostic.goto_next()
+  vim.diagnostic.jump({ count = 1, severity = { min = vim.diagnostic.severity.WARN } })
 end, opts)
 keymap.set("n", "<C-k>", function()
-  vim.diagnostic.goto_prev()
+  vim.diagnostic.jump({ count = -1, severity = { min = vim.diagnostic.severity.WARN } })
 end, opts)
 keymap.set("n", "Q", "<nop>")
 keymap.set("n", "<leader>f", vim.lsp.buf.format)
-
--- vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-
--- vim.keymap.set("n", "<leader><leader>", function()
---     vim.cmd("so")
--- end)
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
@@ -100,6 +94,3 @@ keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true }
 
 -- faster escape in terminal
 keymap.set("t", "esc", "<C-\\><C-n>")
-
--- Aider keymaps
-keymap.set("n", "<leader>Ao", ":AiderOpen --model openai/claude-3.7-sonnet --subtree --no-gitignore<CR>", opts)

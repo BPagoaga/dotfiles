@@ -4,6 +4,7 @@ return {
     ensure_installed = {
       "html-lsp",
       "json-lsp",
+      "kotlin-lsp",
       "marksman",
       "angular-language-server",
       "prettier",

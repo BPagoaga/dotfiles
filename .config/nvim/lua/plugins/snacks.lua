@@ -17,18 +17,32 @@ return {
       desc = "Select Scratch Buffer",
     },
     -- picker
-    -- {
-    --   "<leader>ff",
-    --   function()
-    --     local utils = require("lspconfig.util")
-    --     local root = utils.root_pattern("package-lock.json", "yarn.lock", ".git")(".")
-    --     Snacks.picker.files({
-    --       cwd = root,
-    --       hidden = true,
-    --     })
-    --   end,
-    --   desc = "Find Files",
-    -- },
+    {
+      "<leader>ff",
+      function()
+        local utils = require("lspconfig.util")
+        local root = utils.root_pattern("package-lock.json", "yarn.lock", ".git")(".")
+        Snacks.picker.files({
+          cwd = root,
+          hidden = true,
+          ignored = false,
+        })
+      end,
+      desc = "Find Files including hidden",
+    },
+    {
+      "<leader>f.",
+      function()
+        local utils = require("lspconfig.util")
+        local root = utils.root_pattern("package-lock.json", "yarn.lock", ".git")(".")
+        Snacks.picker.files({
+          cwd = root,
+          hidden = true,
+          ignored = true,
+        })
+      end,
+      desc = "Find Files including ignored",
+    },
     {
       "<leader> ",
       function()

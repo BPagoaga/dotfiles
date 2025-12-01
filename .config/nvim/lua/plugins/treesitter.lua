@@ -6,6 +6,7 @@ return {
     opts = {
       ensure_installed = {
         "angular",
+        "kotlin",
         "html",
         "javascript",
         "jsdoc",

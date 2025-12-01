@@ -39,7 +39,10 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="$HOME/.nvm/current/bin:$PATH"
 export NVM_SYMLINK_CURRENT=true
 export TERM="xterm-256color"
-export EDITOR="vim"
+# export EDITOR="NVIM_APPNAME='adibhanna-nvim' nvim"
+# alias vi="NVIM_APPNAME='adibhanna-nvim' nvim"
+# alias vim="NVIM_APPNAME='adibhanna-nvim' nvim"
+export EDITOR="nvim"
 alias vi="nvim"
 alias vim="nvim"
 
@@ -51,6 +54,10 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH="$HOME/zed/target/release/Zed:$PATH"
 export PATH="$HOME/neovim/bin:$PATH"
 export PATH="$HOME/alacritty/target/release/alacritty:$PATH"
+# Added by Windsurf
+export PATH="/Users/bernardpagoaga/.codeium/windsurf/bin:$PATH"
+# opencode
+export PATH=/Users/bernardpagoaga/.opencode/bin:$PATH
 export WARP_THEMES_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/warp-terminal/themes"
 alias zed="$HOME/zed/target/release/Zed"
 alias lz="lazygit"
@@ -59,3 +66,7 @@ alias l="eza -lla --icons always"
 alias yz="yazi"
 alias logout="pkill -KILL -u bernardpagoaga"
 alias kitty="kitty --start-as fullscreen"
+alias nepc="npm run expo:clean"
+alias nera="npm run expo:run:android"
+alias wt="$HOME/work-tuimer/target/release/work-tuimer"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
