@@ -43,10 +43,8 @@ return {
       -- adding any nvim-cmp sources here will enable them
       -- with blink.compat
       compat = {},
-      default = { "lsp", "path", "snippets", "buffer", "emoji", "codecompanion" },
-      per_filetype = {
-        codecompanion = { "codecompanion" },
-      },
+      default = { "lsp", "path", "snippets", "buffer", "emoji" },
+      per_filetype = {},
       providers = {
         emoji = {
           name = "emoji",
