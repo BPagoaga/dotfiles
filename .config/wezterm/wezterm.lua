@@ -1,16 +1,4 @@
--- local wezterm = require 'wezterm'
--- local mux = wezterm.mux
---
--- wezterm.on('gui-startup', function(window)
---   local tab, pane, window = mux.spawn_window(cmd or {})
---   local gui_window = window:gui_window();
---   gui_window:perform_action(wezterm.action.ToggleFullScreen, pane)
--- end)
---
--- return {
---   native_macos_fullscreen_mode = true
--- }-- Pull in the wezterm API
-
+-- Pull in the wezterm API
 local wezterm = require("wezterm")
 
 -- This table will hold the configuration.
@@ -30,18 +18,8 @@ config.font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Bold" })
 config.font_size = 10
 config.line_height = 1.5
 config.native_macos_fullscreen_mode = false
-config.window_background_opacity = 0.90
--- config.window_frame = {
--- 	border_left_width = "1",
--- 	border_right_width = "1",
--- 	border_bottom_height = "1",
--- 	border_top_height = "1",
--- 	border_left_color = "#2ac3de",
--- 	border_right_color = "#2ac3de",
--- 	border_bottom_color = "#2ac3de",
--- 	border_top_color = "#2ac3de",
--- }
-config.macos_window_background_blur = 30
+config.window_background_opacity = 0.95
+config.macos_window_background_blur = 0
 config.window_padding = {
 	left = 0,
 	right = 0,
@@ -104,86 +82,6 @@ config.keys = {
 	},
 }
 
-function Open_tabs(servers_tab, servers_pane, window)
-	servers_pane:send_text("cd Documents/projects/jooxter/jooxter-webapp-react\n")
-	-- servers_pane:send_text("cd ~/Documents/projects/jooxter/jooxter-webapp-react")
-	-- local fa_server_pane = servers_pane:split({
-	-- 	direction = "Right",
-	-- 	size = 0.333,
-	-- 	cwd = wezterm.home_dir .. "/Documents/projects/jooxter/front-analytics",
-	-- })
-	--
-	-- servers_pane:split({
-	-- 	direction = "Bottom",
-	-- 	size = 0.333,
-	-- 	cwd = wezterm.home_dir .. "/Documents/projects/jooxter/jooxter-webapp-angular",
-	-- })
-	-- servers_pane:split({
-	-- 	direction = "Bottom",
-	-- 	size = 0.5,
-	-- 	cwd = wezterm.home_dir .. "/Documents/projects/jooxter/jooxter-mobile",
-	-- })
-	-- fa_server_pane:split({
-	-- 	direction = "Bottom",
-	-- 	size = 0.5,
-	-- 	cwd = wezterm.home_dir .. "/Documents/projects/jooxter/iot-managment",
-	-- })
-	-- servers_tab:set_title("npm")
-	--
-	-- window
-	-- 	:spawn_tab({
-	-- 		direction = "Right",
-	-- 		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/jooxter-webapp-react",
-	-- 	})
-	-- 	:set_title("JWR")
-	-- window
-	-- 	:spawn_tab({
-	-- 		direction = "Right",
-	-- 		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/jooxter-webapp-angular",
-	-- 	})
-	-- 	:set_title("JWA")
-	-- window
-	-- 	:spawn_tab({
-	-- 		direction = "Right",
-	-- 		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/jooxter-mobile",
-	-- 	})
-	-- 	:set_title("JM")
-	-- window
-	-- 	:spawn_tab({
-	-- 		direction = "Right",
-	-- 		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/front-analytics",
-	-- 	})
-	-- 	:set_title("FA")
-	-- window
-	-- 	:spawn_tab({
-	-- 		direction = "Right",
-	-- 		cwd = wezterm.home_dir .. "/Documents/projects/jooxter/iot-managment",
-	-- 	})
-	-- 	:set_title("IOT")
-	-- window
-	-- 	:spawn_tab({
-	-- 		direction = "Right",
-	-- 		cwd = wezterm.home_dir .. "/.config/nvim",
-	-- 	})
-	-- 	:set_title("Neovim Config")
-	-- window
-	-- 	:spawn_tab({
-	-- 		direction = "Right",
-	-- 		cwd = wezterm.home_dir,
-	-- 	})
-	-- 	:set_title("Home")
-	-- local htopTab = window:spawn_tab({
-	-- 	direction = "Right",
-	-- 	args = {
-	-- 		os.getenv("SHELL"),
-	-- 		"-c",
-	-- 		"btop",
-	-- 	},
-	-- 	cwd = wezterm.home_dir,
-	-- })
-	-- htopTab:set_title("btop")
-end
-
 function Recompute_font_size(window)
 	local My_font_size = 12.0
 	local Font_size = My_font_size
@@ -205,16 +103,14 @@ end
 local mux = wezterm.mux
 
 wezterm.on("gui-startup", function()
-	local servers_tab, servers_pane, window = mux.spawn_window({
+	local _, servers_pane, window = mux.spawn_window({
 		cwd = wezterm.home_dir,
 	})
 
 	local gui_window = window:gui_window()
-	-- gui_window:perform_action(wezterm.action.ToggleFullScreen, servers_pane)
-	gui_window:maximize()
+	gui_window:perform_action(wezterm.action.ToggleFullScreen, servers_pane)
+	-- gui_window:maximize()
 	Recompute_font_size(window)
-	servers_pane:send_text("cd Documents/projects/jooxter/jooxter-webapp-react\n")
-	Open_tabs(servers_tab, servers_pane, window)
 end)
 
 wezterm.on("window-resized", function(window)
