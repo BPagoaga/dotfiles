@@ -72,7 +72,7 @@ return {
             name = "Launch Chrome",
             request = "launch",
             type = "chrome",
-            url = "http://localhost:5173",
+            url = "https://localhost:5173",
             webRoot = "${workspaceFolder}/apps/web/src",
             protocol = "inspector",
             sourceMaps = true,
