@@ -28,7 +28,7 @@ config.window_padding = {
 }
 config.hide_tab_bar_if_only_one_tab = true
 config.tab_and_split_indices_are_zero_based = false
-config.window_decorations = "RESIZE"
+config.window_decorations = "NONE"
 
 -- For example, changing the color scheme:
 -- config.color_scheme = "Freecodecamp dark theme"
@@ -108,9 +108,9 @@ wezterm.on("gui-startup", function()
 	})
 
 	local gui_window = window:gui_window()
-	gui_window:perform_action(wezterm.action.ToggleFullScreen, servers_pane)
+	-- gui_window:perform_action(wezterm.action.ToggleFullScreen, servers_pane)
 	-- gui_window:maximize()
-	Recompute_font_size(window)
+	Recompute_font_size(gui_window)
 end)
 
 wezterm.on("window-resized", function(window)

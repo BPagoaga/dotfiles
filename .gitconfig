@@ -45,7 +45,7 @@
   updateRefs = true
 [pull]
   ff = true
-  rebase = false
+	rebase = true
 [merge]
   # (just 'diff3' if git version < 2.3)
   conflictstyle = zdiff3
@@ -60,3 +60,8 @@
   trustExitCode = true
 [init]
   defaultBranch = main
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
