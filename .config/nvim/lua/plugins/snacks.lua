@@ -233,14 +233,17 @@ return {
               title = "Open PRs",
               cmd = "gh pr list -L 8",
               key = "P",
-              action = function()
-                vim.fn.jobstart("gh pr list --web", { detach = true })
-              end,
+              -- action = function()
+              --   vim.fn.jobstart("gh pr list --web", { detach = true })
+              -- end,
             },
             {
               icon = " ",
               title = "Git Status",
               cmd = "hub status --short --branch --renames",
+              -- action = function()
+              --   vim.fn.jobstart("hub status --short --branch --renames", { detach = true })
+              -- end,
               ttl = 5 * 60,
             },
           }
