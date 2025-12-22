@@ -12,7 +12,7 @@ case "${unameOut}" in
 esac
 
 if [ "$machine" = "Mac" ]; then
-    # code for macOS platform        
+    # code for macOS platform
     export PATH=/Users/bernardpagoaga/.local/bin:$PATH
 
     export ANDROID_HOME=$HOME/Library/Android/sdk
@@ -40,9 +40,7 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="$HOME/.nvm/current/bin:$PATH"
 export NVM_SYMLINK_CURRENT=true
 export TERM="xterm-256color"
-# export EDITOR="NVIM_APPNAME='adibhanna-nvim' nvim"
-# alias vi="NVIM_APPNAME='adibhanna-nvim' nvim"
-# alias vim="NVIM_APPNAME='adibhanna-nvim' nvim"
+alias nvim="$HOME/nvim-macos-arm64/bin/nvim"
 export EDITOR="nvim"
 alias vi="nvim"
 alias vim="nvim"
@@ -51,9 +49,9 @@ alias vim="nvim"
 export NODE_OPTIONS="--max-old-space-size=8192"
 
 export HELIX_RUNTIME="$HOME/helix/runtime"
+export PATH="$PATH:$HOME/nvim-macos-arm64/bin"
 export PATH=$PATH:/usr/local/go/bin
 export PATH="$HOME/zed/target/release/Zed:$PATH"
-export PATH="$HOME/neovim/bin:$PATH"
 export PATH="$HOME/alacritty/target/release/alacritty:$PATH"
 # Added by Windsurf
 export PATH="/Users/bernardpagoaga/.codeium/windsurf/bin:$PATH"
