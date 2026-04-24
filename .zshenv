@@ -40,16 +40,13 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="$HOME/.nvm/current/bin:$PATH"
 export NVM_SYMLINK_CURRENT=true
 export TERM="xterm-256color"
-alias nvim="$HOME/nvim-macos-arm64/bin/nvim"
 export EDITOR="nvim"
 alias vi="nvim"
 alias vim="nvim"
 
 # avoid javascript heap out of memory error
-export NODE_OPTIONS="--max-old-space-size=8192"
+export NODE_OPTIONS="--max-old-space-size=10240"
 
-export HELIX_RUNTIME="$HOME/helix/runtime"
-export PATH="$PATH:$HOME/nvim-macos-arm64/bin"
 export PATH=$PATH:/usr/local/go/bin
 export PATH="$HOME/zed/target/release/Zed:$PATH"
 export PATH="$HOME/alacritty/target/release/alacritty:$PATH"
@@ -69,3 +66,6 @@ alias nepc="npm run expo:clean"
 alias nera="npm run expo:run:android"
 alias wt="$HOME/work-tuimer/target/release/work-tuimer"
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+export JOOXTER_SERVER_URL=https://localhost:8443/
+export SPRING_PROFILES_ACTIVE=local,internal,admin
+ export LIBRARY_PATH=$LIBRARY_PATH:/opt/homebrew/Cellar/openssl@3/3.6.0/lib
