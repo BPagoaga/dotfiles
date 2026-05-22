@@ -128,8 +128,8 @@ Snacks.setup({
 			"diagnostics",
 			"diagnostics_buffer",
 			explorer = {
-				layout = { preset = "default", preview = true },
 				auto_close = true,
+				jump = { close = true },
 			},
 			"files",
 			"grep",
@@ -185,19 +185,19 @@ map("n", "<leader>E", function()
 	local cwd = utils.root_pattern("package.json", "yarn.lock", ".git")(".")
 	Snacks.notify(cwd)
 	Snacks.explorer({
-		layout = { preset = "default", preview = true },
 		cwd = cwd,
 		ignored = true,
 		hidden = true,
 		auto_close = true,
+		jump = { close = true },
 	})
 end, { desc = "File explorer (monorepo root)" })
 map("n", "<leader>e", function()
 	Snacks.explorer({
-		layout = { preset = "default", preview = true },
 		ignored = true,
 		hidden = true,
 		auto_close = true,
+		jump = { close = true },
 	})
 end, { desc = "File explorer" })
 map("n", "<leader>;", function()
