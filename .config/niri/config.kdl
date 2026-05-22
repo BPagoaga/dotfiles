@@ -1,12 +1,13 @@
 // This config is in the KDL format: https://kdl.dev
 // "/-" comments out the following node.
+//
 // Check the wiki for a full description of the configuration:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
 config-notification {
     disable-failed
 }
 // Outputs from existing configuration
-/-output "eDP-1" {
+output "eDP-1" {
     // Uncomment this line to disable this output.
     // off
 
@@ -37,6 +38,37 @@ config-notification {
     position x=1280 y=0
 }
 
+output "HDMI-A-1" {
+    // Uncomment this line to disable this output.
+    // off
+
+    // Resolution and, optionally, refresh rate of the output.
+    // The format is "<width>x<height>" or "<width>x<height>@<refresh rate>".
+    // If the refresh rate is omitted, niri will pick the highest refresh rate
+    // for the resolution.
+    // If the mode is omitted altogether or is invalid, niri will pick one automatically.
+    // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
+    mode "1920x1080@120.030"
+
+    // You can use integer or fractional scale, for example use 1.5 for 150% scale.
+    scale 1
+
+    // Transform allows to rotate the output counter-clockwise, valid values are:
+    // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
+    transform "normal"
+
+    // Position of the output in the global coordinate space.
+    // This affects directional monitor actions like "focus-monitor-left", and cursor movement.
+    // The cursor can only move between directly adjacent outputs.
+    // Output scale and rotation has to be taken into account for positioning:
+    // outputs are sized in logical, or scaled, pixels.
+    // For example, a 3840×2160 output with scale 2.0 will have a logical size of 1920×1080,
+    // so to put another output directly adjacent to it on the right, set its x to 1920.
+    // If the position is unset or results in an overlap, the output is instead placed
+    // automatically.
+    position x=1920 y=0
+}
+
 
 gestures {
     hot-corners {
@@ -50,18 +82,64 @@ gestures {
 input {
     keyboard {
         xkb {
+            // You can set rules, model, layout, variant and options.
+            // For more information, see xkeyboard-config(7).
+
+            // For example:
             layout "fr"
+            // options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
+
+            // If this section is empty, niri will fetch xkb settings
+            // from org.freedesktop.locale1. You can control these using
+            // localectl set-x11-keymap.
         }
-        numlock
+
+        // Enable numlock on startup, omitting this setting disables it.
+        // numlock
     }
+
+    // Next sections include libinput settings.
+    // Omitting settings disables them, or leaves them at their default values.
+    // All commented-out settings here are examples, not defaults.
     touchpad {
+        // off
         tap
+        // dwt
+        // dwtp
+        // drag false
+        // drag-lock
         natural-scroll
+        // accel-speed 0.2
+        // accel-profile "flat"
+        // scroll-method "two-finger"
+        // disabled-on-external-mouse
     }
+
     mouse {
+        // off
+        // natural-scroll
+        // accel-speed 0.2
+        // accel-profile "flat"
+        // scroll-method "no-scroll"
     }
+
     trackpoint {
+        // off
+        // natural-scroll
+        // accel-speed 0.2
+        // accel-profile "flat"
+        // scroll-method "on-button-down"
+        // scroll-button 273
+        // scroll-button-lock
+        // middle-emulation
     }
+
+    // Uncomment this to make the mouse warp to the center of newly focused windows.
+    // warp-mouse-to-focus
+
+    // Focus windows and outputs automatically when moving the mouse into them.
+    // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
+    // focus-follows-mouse max-scroll-amount="0%"
 }
 // You can configure outputs by their name, which you can find
 // by running `niri msg outputs` while inside a niri instance.
@@ -75,7 +153,6 @@ input {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 layout {
     // Set gaps around windows in logical pixels.
-    gaps 8
     background-color "transparent"
     // When to center a column when changing focus, options are:
     // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -83,20 +160,22 @@ layout {
     // - "always", the focused column will always be centered.
     // - "on-overflow", focusing a column will center it if it doesn't fit
     //   together with the previously focused column.
-    center-focused-column "on-overflow"
+    center-focused-column "never"
     // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
     preset-column-widths {
         // Proportion sets the width as a fraction of the output width, taking gaps into account.
         // For example, you can perfectly fit four windows sized "proportion 0.25" on an output.
         // The default preset widths are 1/3, 1/2 and 2/3 of the output.
-        proportion 1.0
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
         // Fixed sets the width in logical pixels exactly.
         // fixed 1920
     }
     // You can also customize the heights that "switch-preset-window-height" (Mod+Shift+R) toggles between.
     // preset-window-heights { }
     // You can change the default width of the new windows.
-    default-column-width { proportion 1.0; }
+    default-column-width { proportion 0.5; }
     // If you leave the brackets empty, the windows themselves will decide their initial width.
     // default-column-width {}
     // By default focus ring and border are rendered as a solid background rectangle
@@ -110,17 +189,11 @@ layout {
     // Alternatively, you can override it with a window rule called
     // `draw-border-with-background`.
     border {
-        // off
-        width 2
-        active-color   "#33ccffee"      // Neutral gray
+        off
+        width 4
+        active-color   "#707070"      // Neutral gray
         inactive-color "#d0d0d0"      // Light gray
         urgent-color   "#cc4444"      // Softer red
-    }
-    focus-ring {
-        off
-        width 1
-        active-color   "#7fc8ff"      // Medium gray
-        inactive-color "#505050"      // Dark gray
     }
     shadow {
         softness 30
@@ -129,10 +202,6 @@ layout {
         color "#0007"
     }
     struts {
-        left 16
-        right 16 
-        top 8
-        bottom 8
     }
 }
 layer-rule {
@@ -149,24 +218,14 @@ overview {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 // This line starts waybar, a commonly used bar for Wayland compositors.
-spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store &"
-// spawn-at-startup "dms" "run"
-spawn-at-startup "/usr/lib/mate-polkit/polkit-mate-authentication-agent-1"
-spawn-at-startup "wezterm"
-spawn-at-startup "zen-browser"
 environment {
   XDG_CURRENT_DESKTOP "niri"
-  QT_QPA_PLATFORM "wayland"
-  ELECTRON_OZONE_PLATFORM_HINT "auto"
-  QT_QPA_PLATFORMTHEME "gtk3"
-  QT_QPA_PLATFORMTHEME_QT6 "gtk3"
-  TERMINAL "ghostty"
 }
 hotkey-overlay {
     skip-at-startup
 }
 prefer-no-csd
-screenshot-path "~/Images/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 animations {
     workspace-switch {
         spring damping-ratio=0.80 stiffness=523 epsilon=0.0001
@@ -209,7 +268,7 @@ window-rule {
     // since this is the default config, and we want no false positives.
     // You can get away with just app-id="wezterm" if you want.
     match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    default-column-width { proportion 1.0; }
+    default-column-width {}
 }
 window-rule {
     match app-id=r#"^org\.gnome\."#
@@ -242,27 +301,48 @@ window-rule {
     draw-border-with-background false
 }
 window-rule {
-    match is-active=false
-    opacity 0.9
-}
-window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     match app-id="zoom"
     open-floating true
 }
+// Open dms windows as floating by default
 window-rule {
-    geometry-corner-radius 12
-    clip-to-geometry true
+    match app-id=r#"org.quickshell$"#
+    open-floating true
 }
+debug {
+    honor-xdg-activation-with-invalid-serial
+}
+
+// Override to disable super+tab
+recent-windows {
+    binds {
+        Alt+Tab         { next-window scope="output"; }
+        Alt+Shift+Tab   { previous-window scope="output"; }
+        Alt+grave       { next-window filter="app-id"; }
+        Alt+Shift+grave { previous-window filter="app-id"; }
+    }
+}
+
+// Include dms files
+include "dms/colors.kdl"
+include "dms/layout.kdl"
+include "dms/alttab.kdl"
+include "dms/binds.kdl"
+include "dms/outputs.kdl"
+include "dms/cursor.kdl"
+
+// shows a list of important hotkeys.
+// Mod+Shift+Slash { show-hotkey-overlay; }
+// Suggested binds for running programs: terminal, app launcher, screen locker.
 binds {
+    Mod+T hotkey-overlay-title="Open a Terminal" { spawn "wezterm"; }
     // === System & Overview ===
-    Mod+D { spawn "niri" "msg" "action" "toggle-overview"; }
     Mod+Tab repeat=false { toggle-overview; }
     Mod+Shift+Slash { show-hotkey-overlay; }
-    Mod+G hotkey-overlay-title="Wlogout" {spawn "wlogout"; }
+    Mod+G hotkey-overlay-title="WLogout" { spawn "wlogout"; }
 
     // === Application Launchers ===
-    Mod+T hotkey-overlay-title="Open Terminal" { spawn "wezterm"; }
     Mod+Space hotkey-overlay-title="Application Launcher" {
         spawn "dms" "ipc" "call" "spotlight" "toggle";
     }
@@ -449,7 +529,4 @@ binds {
     // === System Controls ===
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
     Mod+Shift+P { power-off-monitors; }
-}
-debug {
-    honor-xdg-activation-with-invalid-serial
 }
