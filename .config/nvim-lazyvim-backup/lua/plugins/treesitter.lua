@@ -1,0 +1,32 @@
+return {
+  {
+    "nvim-treesitter/nvim-treesitter",
+    dependencies = { "OXY2DEV/markview.nvim" },
+    lazy = false,
+    opts = {
+      ensure_installed = {
+        "angular",
+        "kotlin",
+        "html",
+        "java",
+        "javascript",
+        "jsdoc",
+        "json",
+        "jsonc",
+        "lua",
+        "luadoc",
+        "luap",
+        "markdown",
+        "markdown_inline",
+        "tsx",
+        "typescript",
+        "python",
+        "yaml",
+        "scss",
+        "vim",
+        "vimdoc",
+        "http",
+      },
+    },
+  },
+}

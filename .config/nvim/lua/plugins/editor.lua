@@ -123,17 +123,4 @@ if ok_mini_ai then
 	mini_ai.setup({ n_lines = 500 })
 end
 
--- mini.files
-local ok_mini_files, mini_files = pcall(require, "mini.files")
-if ok_mini_files then
-	mini_files.setup({
-		windows = { preview = true, width_preview = 50 },
-		options = { permanent_delete = false, use_as_default_explorer = true },
-	})
-	map("n", "<leader>e", function()
-		mini_files.open(vim.api.nvim_buf_get_name(0))
-	end, { desc = "Open File Explorer (current)" })
-	map("n", "<leader>E", function()
-		mini_files.open()
-	end, { desc = "Open File Explorer (root)" })
-end
+

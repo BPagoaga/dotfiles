@@ -1,5 +1,6 @@
 return {
   "saghen/blink.cmp",
+  build = "cargo build --release",
   dependencies = { "allaman/emoji.nvim", "saghen/blink.compat" },
   opts = {
     snippets = {
@@ -40,11 +41,7 @@ return {
     -- experimental signature help support
     -- signature = { enabled = true },
     sources = {
-      -- adding any nvim-cmp sources here will enable them
-      -- with blink.compat
-      compat = {},
       default = { "lsp", "path", "snippets", "buffer", "emoji" },
-      per_filetype = {},
       providers = {
         emoji = {
           name = "emoji",
@@ -59,6 +56,7 @@ return {
           end,
         },
       },
+      per_filetype = {},
     },
   },
   cmdline = {

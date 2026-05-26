@@ -1,6 +1,4 @@
 -- Install: ~/.local/share/nvim/site/pack/completion/start/blink.cmp
--- Install: ~/.local/share/nvim/site/pack/completion/start/blink.compat
--- Install: ~/.local/share/nvim/site/pack/completion/start/emoji.nvim
 
 local ok, blink = pcall(require, "blink.cmp")
 if not ok then
@@ -40,18 +38,13 @@ blink.setup({
 	-- experimental signature help support
 	-- signature = { enabled = true },
 	sources = {
-		default = { "lsp", "path", "snippets", "buffer", "emoji" },
+		default = { "lsp", "path", "snippets", "buffer", "copilot" },
 		providers = {
-			emoji = {
-				name = "emoji",
-				module = "blink.compat.source",
-				transform_items = function(ctx, items)
-					local kind = require("blink.cmp.types").CompletionItemKind.Text
-					for i = 1, #items do
-						items[i].kind = kind
-					end
-					return items
-				end,
+			copilot = {
+				name = "copilot",
+				module = "blink-copilot",
+				score_offset = 100,
+				async = true,
 			},
 		},
 	},
