@@ -15,12 +15,10 @@ vim.lsp.config["vtsls"] = {
 	filetypes = {
 		"javascript",
 		"javascriptreact",
-		"javascript.jsx",
 		"typescript",
 		"typescriptreact",
-		"typescript.tsx",
 	},
-	root_markers = { "tsconfig.json", "jsconfig.json", "package.json", ".git" },
+	root_markers = { "package-lock.json", "yarn.lock", ".git" },
 	settings = {
 		vtsls = {
 			enableMoveToFileCodeAction = true,
@@ -57,17 +55,15 @@ vim.lsp.config["eslint"] = {
 	filetypes = {
 		"javascript",
 		"javascriptreact",
-		"javascript.jsx",
 		"typescript",
 		"typescriptreact",
-		"typescript.tsx",
 		"vue",
 		"html",
 	},
-	root_markers = { ".eslintrc", ".eslintrc.js", ".eslintrc.json", "eslint.config.js", "package.json", ".git" },
+	root_markers = { "package-lock.json", "yarn.lock", ".eslintrc", ".eslintrc.js", ".eslintrc.json", "eslint.config.js", ".git" },
 	settings = {
 		validate = "on",
-		packageManager = "npm",
+		packageManager = nil,
 		useESLintClass = false,
 		experimental = { useFlatConfig = false },
 		codeActionOnSave = { enable = false, mode = "all" },
@@ -76,6 +72,7 @@ vim.lsp.config["eslint"] = {
 		onIgnoredFiles = "off",
 		rulesCustomizations = {},
 		run = "onType",
+		problems = { shortenToSingleLine = false },
 		nodePath = "",
 		workingDirectory = { mode = "location" },
 		codeAction = {
@@ -83,6 +80,32 @@ vim.lsp.config["eslint"] = {
 			showDocumentation = { enable = true },
 		},
 	},
+	handlers = {
+		["eslint/openDoc"] = function(_, result)
+			if result then vim.ui.open(result.url) end
+			return {}
+		end,
+		["eslint/confirmESLintExecution"] = function()
+			return 4 -- approved
+		end,
+		["eslint/probeFailed"] = function()
+			vim.notify("[eslint] Probe failed.", vim.log.levels.WARN)
+			return {}
+		end,
+		["eslint/noLibrary"] = function()
+			vim.notify("[eslint] Unable to find ESLint library.", vim.log.levels.WARN)
+			return {}
+		end,
+	},
+	on_attach = function(client, bufnr)
+		-- Set workspaceFolder so the server knows the root (important in monorepos)
+		local root = client.config.root_dir or vim.fn.getcwd()
+		client.config.settings.workspaceFolder = {
+			uri = root,
+			name = vim.fn.fnamemodify(root, ":t"),
+		}
+		client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+	end,
 }
 
 -- Tailwind CSS
@@ -93,7 +116,6 @@ vim.lsp.config["tailwindcss"] = {
 		"css",
 		"scss",
 		"less",
-		"postcss",
 		"javascript",
 		"javascriptreact",
 		"typescript",
@@ -101,7 +123,7 @@ vim.lsp.config["tailwindcss"] = {
 		"vue",
 		"svelte",
 	},
-	root_markers = { "tailwind.config.js", "tailwind.config.ts", "postcss.config.js", "package.json", ".git" },
+	root_markers = { "tailwind.config.js", "tailwind.config.ts", "postcss.config.js", "package-lock.json", "yarn.lock", ".git" },
 	settings = {
 		tailwindCSS = {
 			classAttributes = { "class", "className", "class:list", "classList", "ngClass" },
@@ -122,7 +144,7 @@ vim.lsp.config["tailwindcss"] = {
 vim.lsp.config["cssls"] = {
 	cmd = { "vscode-css-language-server", "--stdio" },
 	filetypes = { "css", "scss", "less" },
-	root_markers = { "package.json", ".git" },
+	root_markers = { "package-lock.json", "yarn.lock", ".git" },
 	settings = {
 		css = { validate = true, lint = { unknownAtRules = "ignore" } },
 		scss = { validate = true, lint = { unknownAtRules = "ignore" } },
@@ -133,13 +155,13 @@ vim.lsp.config["cssls"] = {
 vim.lsp.config["html"] = {
 	cmd = { "vscode-html-language-server", "--stdio" },
 	filetypes = { "html" },
-	root_markers = { "package.json", ".git" },
+	root_markers = { "package-lock.json", "yarn.lock", ".git" },
 }
 
 vim.lsp.config["jsonls"] = {
 	cmd = { "vscode-json-language-server", "--stdio" },
 	filetypes = { "json", "jsonc" },
-	root_markers = { "package.json", ".git" },
+	root_markers = { "package-lock.json", "yarn.lock", ".git" },
 	settings = {
 		json = {
 			validate = { enable = true },
@@ -260,27 +282,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 				buffer = event.buf,
 				callback = function()
 					vim.cmd("EslintFixAll")
-				end,
-			})
-		end
-
-		-- Prettier format on save for web filetypes
-		local prettier_fts = {
-			typescript = true,
-			typescriptreact = true,
-			javascript = true,
-			javascriptreact = true,
-			css = true,
-			scss = true,
-			html = true,
-			json = true,
-			markdown = true,
-		}
-		if prettier_fts[vim.bo[event.buf].filetype] then
-			vim.api.nvim_create_autocmd("BufWritePre", {
-				buffer = event.buf,
-				callback = function()
-					vim.lsp.buf.format({ async = false, name = "vtsls" })
 				end,
 			})
 		end

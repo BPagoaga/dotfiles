@@ -34,6 +34,7 @@ opt.swapfile = false
 opt.backup = false
 opt.updatetime = 250
 opt.timeoutlen = 300
+opt.confirm = true
 
 -- Splits
 opt.splitright = true

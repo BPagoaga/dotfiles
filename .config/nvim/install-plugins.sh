@@ -87,6 +87,9 @@ clone "whichkey"  "folke/which-key.nvim"                        "which-key.nvim"
 clone "mini"      "echasnovski/mini.nvim"                       "mini.nvim"                         "v0.17.0"
 clone "markdown"  "MeanderingProgrammer/render-markdown.nvim"   "render-markdown.nvim"              "v8.12.0"
 
+# Session management
+clone "session"   "folke/persistence.nvim"                         "persistence.nvim"                  "v3.1.0"
+
 # UI enhancements
 clone "noice"     "folke/noice.nvim"                            "noice.nvim"                        "v4.10.0"
 clone "noice"     "MunifTanjim/nui.nvim"                        "nui.nvim"                          "0.4.0"

@@ -55,26 +55,51 @@ if ok_ll then
 				{ "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
 				{ pretty_path },
 			},
-			lualine_x = {
-				-- noice command status
-				{
-					function() return require("noice").api.status.command.get() end,
-					cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
-				color = function() return { fg = hl_fg("Statement") } end,
-			},
-			-- noice mode status (e.g. recording macro)
+		lualine_x = {
+			-- noice command status
 			{
-				function() return require("noice").api.status.mode.get() end,
-				cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
-				color = function() return { fg = hl_fg("Constant") } end,
-			},
-			-- dap status
+				function() return require("noice").api.status.command.get() end,
+				cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
+			color = function() return { fg = hl_fg("Statement") } end,
+		},
+		-- noice mode status (e.g. recording macro)
+		{
+			function() return require("noice").api.status.mode.get() end,
+			cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
+			color = function() return { fg = hl_fg("Constant") } end,
+		},
+		-- dap status
+		{
+			function() return "  " .. require("dap").status() end,
+			cond = function() return package.loaded["dap"] and require("dap").status() ~= "" end,
+			color = function() return { fg = hl_fg("Debug") } end,
+		},
+			-- Active LSP clients (LazyVim style)
 			{
-				function() return "  " .. require("dap").status() end,
-				cond = function() return package.loaded["dap"] and require("dap").status() ~= "" end,
-				color = function() return { fg = hl_fg("Debug") } end,
+				function()
+					local clients = vim.lsp.get_clients({ bufnr = 0 })
+					if #clients == 0 then return "" end
+					local names = {}
+					for _, c in ipairs(clients) do
+						-- skip copilot noise
+						if c.name ~= "copilot" and c.name ~= "GitHub Copilot" then
+							table.insert(names, c.name)
+						end
+					end
+					if #names == 0 then return "" end
+					return " " .. table.concat(names, ", ")
+				end,
+				cond = function()
+					for _, c in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
+						if c.name ~= "copilot" and c.name ~= "GitHub Copilot" then
+							return true
+						end
+					end
+					return false
+				end,
+				color = function() return { fg = hl_fg("Special") } end,
 			},
-				-- git diff (sourced from gitsigns)
+			-- git diff (sourced from gitsigns)
 				{
 					"diff",
 					symbols = {

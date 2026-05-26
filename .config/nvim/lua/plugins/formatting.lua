@@ -27,26 +27,6 @@ conform.setup({
 		timeout_ms = 3000,
 		lsp_fallback = true,
 	},
-	formatters = {
-		prettier = {
-			prepend_args = function(_, ctx)
-				local config_files = {
-					".prettierrc",
-					".prettierrc.js",
-					".prettierrc.json",
-					".prettierrc.yaml",
-					".prettierrc.yml",
-					"prettier.config.js",
-				}
-				for _, f in ipairs(config_files) do
-					if vim.fn.filereadable(ctx.dirname .. "/" .. f) == 1 then
-						return {}
-					end
-				end
-				return { "--tab-width", "2", "--single-quote", "--trailing-comma", "es5", "--print-width", "100" }
-			end,
-		},
-	},
 })
 
 map("n", "<leader>lf", function()
