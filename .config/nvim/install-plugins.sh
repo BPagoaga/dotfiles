@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Install all plugins via vim-pack (built-in Neovim package manager)
-# Plugins go to: ~/.local/share/nvim-copilot/site/pack/<pack-name>/start/<plugin>
+# Plugins go to: ~/.local/share/nvim/site/pack/<pack-name>/start/<plugin>
 
-PACK_DIR="$HOME/.local/share/nvim-copilot/site/pack"
+PACK_DIR="$HOME/.local/share/nvim/site/pack"
 
 # clone "<pack>" "<user/repo>" "<name>" ["<ref>"]
 # Skips install if the plugin is already at the pinned ref (tracked via .pin file).
@@ -45,9 +45,14 @@ clone "treesitter" "nvim-treesitter/nvim-treesitter-textobjects" "nvim-treesitte
 clone "completion" "Saghen/blink.cmp"                           "blink.cmp"                         "v1.10.2"
 if [ ! -f "$PACK_DIR/completion/start/blink.cmp/target/release/libblink_cmp_fuzzy.dylib" ]; then
   echo "Building blink.cmp native fuzzy library..."
-  cargo build --release --manifest-path "$PACK_DIR/completion/start/blink.cmp/Cargo.toml" --quiet \
-    && echo "blink.cmp built successfully." \
-    || echo "WARNING: blink.cmp build failed — ensure Rust/cargo is installed."
+  LUAJIT_PREFIX="$(brew --prefix luajit 2>/dev/null || echo /opt/homebrew/opt/luajit)"
+  export RUSTFLAGS="-L $LUAJIT_PREFIX/lib -l luajit-5.1"
+  if cargo build --release --manifest-path "$PACK_DIR/completion/start/blink.cmp/Cargo.toml"; then
+    echo "blink.cmp built successfully."
+  else
+    echo "WARNING: blink.cmp build failed — ensure Rust/cargo and luajit (brew install luajit) are installed."
+  fi
+  unset RUSTFLAGS
 else
   echo "blink.cmp native library already built, skipping."
 fi
