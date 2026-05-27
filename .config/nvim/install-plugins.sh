@@ -35,10 +35,10 @@ clone() {
 }
 
 # Theme
-clone "themes"    "folke/tokyonight.nvim"                       "tokyonight.nvim"                   "v4.14.1"
+clone "themes"    "folke/tokyonight.nvim"                       "tokyonight.nvim"                   "cdc07ac784"
 
 # Treesitter
-clone "treesitter" "nvim-treesitter/nvim-treesitter"            "nvim-treesitter"                   "v0.10.0"
+clone "treesitter" "nvim-treesitter/nvim-treesitter"            "nvim-treesitter"                   "4916d6592e"
 clone "treesitter" "nvim-treesitter/nvim-treesitter-textobjects" "nvim-treesitter-textobjects"       "851e865342"
 
 # Completion
@@ -96,6 +96,14 @@ clone "noice"     "MunifTanjim/nui.nvim"                        "nui.nvim"      
 
 # Yazi file manager
 clone "yazi"      "mikavilpas/yazi.nvim"                        "yazi.nvim"                         "v13.1.6"
+
+# nvim-treesitter (pinned commit) stores queries under runtime/queries/ not queries/
+# Neovim looks for queries at {plugin}/queries/ so we symlink to make them discoverable
+TS_DIR="$PACK_DIR/treesitter/start/nvim-treesitter"
+if [ -d "$TS_DIR/runtime/queries" ] && [ ! -L "$TS_DIR/queries" ]; then
+  ln -sf "$TS_DIR/runtime/queries" "$TS_DIR/queries"
+  echo "Created queries symlink for nvim-treesitter."
+fi
 
 echo ""
 echo "Done! Open Neovim and run :TSUpdate to install parsers."
