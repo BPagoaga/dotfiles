@@ -83,8 +83,9 @@ vim.keymap.set("n", "<leader>x", ..., { desc = "..." })
 | `<leader>d` | Debug |
 | `<leader>h` | Git Hunks (gitsigns) |
 | `<leader>a` | AI/Copilot |
+| `<leader>ai` | OpenCode |
+| `<leader>r` | Refactor (refactoring.nvim) |
 | `<leader>u` | UI/Notify |
-| `<leader>o` | OpenCode |
 | `<leader>w` | Window |
 | `<leader>n` | Notifications |
 | `<leader>e` | File explorer (snacks explorer) |

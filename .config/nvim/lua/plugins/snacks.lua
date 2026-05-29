@@ -37,7 +37,7 @@ Snacks.setup({
 				{ icon = " ", key = "n", desc = "New File",        action = ":ene | startinsert" },
 				{ icon = " ", key = "g", desc = "Find Text",       action = ":lua Snacks.dashboard.pick('live_grep')" },
 				{ icon = " ", key = "r", desc = "Recent Files",    action = ":lua Snacks.picker.recent({ filter = { cwd = true } })" },
-				{ icon = " ", key = "s", desc = "Restore Session", section = "session" },
+				{ icon = " ", key = "s", desc = "Restore Session", action = ":lua require('persistence').load()" },
 			},
 			header = [[
 ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
@@ -252,6 +252,6 @@ map({ "n", "t" }, "<C-/>", function() Snacks.terminal.toggle() end, { desc = "To
 -- ============================================================================
 -- OpenCode AI
 -- ============================================================================
-map("n", "<leader>oc", function()
+map("n", "<leader>aic", function()
 	Snacks.terminal("opencode", { cwd = vim.fn.getcwd(), esc_esc = false, ctrl_hjkl = false })
 end, { desc = "Open OpenCode AI" })

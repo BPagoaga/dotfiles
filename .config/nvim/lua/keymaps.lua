@@ -5,6 +5,10 @@ map("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
 map("n", "<C-j>", "<C-w>j", { desc = "Move to lower window" })
 map("n", "<C-k>", "<C-w>k", { desc = "Move to upper window" })
 map("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
+map("n", "sh", "<C-w>h", { desc = "Move to left window" })
+map("n", "sj", "<C-w>j", { desc = "Move to lower window" })
+map("n", "sk", "<C-w>k", { desc = "Move to upper window" })
+map("n", "sl", "<C-w>l", { desc = "Move to right window" })
 
 -- Resize windows
 map("n", "<C-Up>", ":resize +2<CR>", { desc = "Increase window height" })
@@ -16,6 +20,11 @@ map("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "Increase window width
 map("n", "<S-l>", ":bnext<CR>", { desc = "Next buffer" })
 map("n", "<S-h>", ":bprevious<CR>", { desc = "Previous buffer" })
 map("n", "<leader>bd", ":bdelete<CR>", { desc = "Delete buffer" })
+map("n", "bo", ":%bdelete|edit#|bdelete#<CR>", { desc = "Delete all other buffers" })
+
+-- New line without entering insert mode
+map("n", "<leader>o", "o<Esc>", { desc = "New line below" })
+map("n", "<leader>O", "O<Esc>", { desc = "New line above" })
 
 -- Clear search highlight
 map("n", "<Esc>", ":nohl<CR>", { desc = "Clear search highlight" })
@@ -24,9 +33,17 @@ map("n", "<Esc>", ":nohl<CR>", { desc = "Clear search highlight" })
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
 map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
--- Keep cursor centered when scrolling
-map("n", "<C-d>", "<C-d>zz")
-map("n", "<C-u>", "<C-u>zz")
+-- Keep cursor centered when scrolling (only if cursor actually moved)
+map("n", "<C-d>", function()
+	local before = vim.fn.line(".")
+	vim.cmd("normal! \x04") -- <C-d>
+	if vim.fn.line(".") ~= before then vim.cmd("normal! zz") end
+end)
+map("n", "<C-u>", function()
+	local before = vim.fn.line(".")
+	vim.cmd("normal! \x15") -- <C-u>
+	if vim.fn.line(".") ~= before then vim.cmd("normal! zz") end
+end)
 map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
 

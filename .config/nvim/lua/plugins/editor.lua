@@ -41,12 +41,7 @@ end
 local ok_comment, Comment = pcall(require, "Comment")
 if ok_comment then
 	Comment.setup({
-		pre_hook = function()
-			local ok_tc, tc = pcall(require, "ts_context_commentstring.integrations.comment_nvim")
-			if ok_tc then
-				return tc.create_pre_hook()()
-			end
-		end,
+		pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
 	})
 end
 
@@ -54,6 +49,11 @@ end
 local ok_gs, gitsigns = pcall(require, "gitsigns")
 if ok_gs then
 	gitsigns.setup({
+		current_line_blame = true,
+		current_line_blame_opts = {
+			delay = 300,
+			virt_text_pos = "eol",
+		},
 		signs = {
 			add = { text = "│" },
 			change = { text = "│" },
@@ -89,6 +89,7 @@ if ok_gs then
 			gmap("n", "<leader>hb", function()
 				gs.blame_line({ full = true })
 			end, { desc = "Blame Line" })
+			gmap("n", "<leader>hB", gs.toggle_current_line_blame, { desc = "Toggle Inline Blame" })
 			gmap("n", "<leader>hd", gs.diffthis, { desc = "Diff This" })
 			gmap({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Select Hunk" })
 		end,
@@ -111,7 +112,8 @@ if ok_wk then
 			{ "<leader>h",  group = "Hunks" },
 			{ "<leader>a",  group = "AI/Copilot" },
 			{ "<leader>u",  group = "UI/Notify" },
-			{ "<leader>o",  group = "OpenCode" },
+			{ "<leader>ai", group = "OpenCode" },
+			{ "<leader>r",  group = "Refactor" },
 			{ "<leader>w",  group = "Window" },
 			{ "<leader>n",  group = "Notifications" },
 			{ "<leader>b",  group = "Buffers" },
@@ -137,6 +139,17 @@ if ok_wk then
 			-- Git
 			{ "]g",         desc = "Next hunk" },
 			{ "[g",         desc = "Prev hunk" },
+			-- Refactor
+			{ "<leader>re", desc = "Extract function",        mode = "x" },
+			{ "<leader>rf", desc = "Extract function to file", mode = "x" },
+			{ "<leader>rv", desc = "Extract variable",        mode = "x" },
+			{ "<leader>ri", desc = "Inline variable",         mode = { "n", "x" } },
+			{ "<leader>rI", desc = "Inline function" },
+			{ "<leader>rb", desc = "Extract block" },
+			{ "<leader>rB", desc = "Extract block to file" },
+			{ "<leader>rp", desc = "Print var (debug)",       mode = { "n", "x" } },
+			{ "<leader>rP", desc = "Print func (debug)" },
+			{ "<leader>rc", desc = "Clean up debug prints" },
 		},
 	})
 end

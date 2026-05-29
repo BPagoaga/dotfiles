@@ -82,6 +82,7 @@ clone "ui"        "nvim-tree/nvim-web-devicons"                 "nvim-web-devico
 clone "pairs"     "windwp/nvim-autopairs"                       "nvim-autopairs"                    "0.10.0"
 clone "surround"  "kylechui/nvim-surround"                      "nvim-surround"                     "v4.0.5"
 clone "comment"   "numToStr/Comment.nvim"                       "Comment.nvim"                      "v0.8.0"
+clone "comment"   "JoosepAlviste/nvim-ts-context-commentstring" "nvim-ts-context-commentstring"     "6141a40173"
 clone "git"       "lewis6991/gitsigns.nvim"                     "gitsigns.nvim"                     "v2.1.0"
 clone "whichkey"  "folke/which-key.nvim"                        "which-key.nvim"                    "v3.17.0"
 clone "mini"      "echasnovski/mini.nvim"                       "mini.nvim"                         "v0.17.0"
@@ -96,6 +97,10 @@ clone "noice"     "MunifTanjim/nui.nvim"                        "nui.nvim"      
 
 # Yazi file manager
 clone "yazi"      "mikavilpas/yazi.nvim"                        "yazi.nvim"                         "v13.1.6"
+
+# Refactoring
+clone "refactor"  "lewis6991/async.nvim"                         "async.nvim"                        "7a1d7d4993"
+clone "refactor"  "ThePrimeagen/refactoring.nvim"               "refactoring.nvim"                  "624c01e817"
 
 # nvim-treesitter (pinned commit) stores queries under runtime/queries/ not queries/
 # Neovim looks for queries at {plugin}/queries/ so we symlink to make them discoverable

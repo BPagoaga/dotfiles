@@ -14,7 +14,7 @@ treesitter.setup({
 -- Install parsers for languages we care about (no-op if already installed)
 treesitter.install({
 	"bash", "css", "html", "java", "javascript", "jsdoc",
-	"json", "jsonc", "lua", "luadoc", "markdown", "markdown_inline",
+	"json", "lua", "luadoc", "markdown", "markdown_inline",
 	"regex", "scss", "tsx", "typescript", "vim", "vimdoc", "xml", "yaml",
 })
 
@@ -23,7 +23,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	pattern = {
 		"typescript", "typescriptreact",
 		"javascript", "javascriptreact",
-		"css", "scss", "html", "json", "jsonc", "yaml",
+		"css", "scss", "html", "json", "yaml",
 		"lua", "vim", "bash", "markdown", "java", "xml",
 	},
 	callback = function()

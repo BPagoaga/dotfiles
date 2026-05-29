@@ -257,7 +257,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		lmap("gI", buf.implementation, "Go to implementation")
 		lmap("gt", buf.type_definition, "Go to type definition")
 		lmap("K", buf.hover, "Hover documentation")
-		lmap("<C-k>", buf.signature_help, "Signature help")
+		lmap("<C-h>", buf.signature_help, "Signature help")
 		lmap("<leader>rn", buf.rename, "Rename symbol")
 		lmap("<leader>ca", buf.code_action, "Code action")
 		lmap("<leader>ds", buf.document_symbol, "Document symbols")
@@ -281,7 +281,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			vim.api.nvim_create_autocmd("BufWritePre", {
 				buffer = event.buf,
 				callback = function()
-					vim.cmd("EslintFixAll")
+					local bufnr = event.buf
+					client:request("workspace/executeCommand", {
+						command = "eslint.applyAllFixes",
+						arguments = {
+							{ uri = vim.uri_from_bufnr(bufnr), version = vim.lsp.util.buf_versions[bufnr] },
+						},
+					}, nil, bufnr)
 				end,
 			})
 		end
