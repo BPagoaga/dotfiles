@@ -66,11 +66,14 @@ clone "copilot"   "CopilotC-Nvim/CopilotChat.nvim"              "CopilotChat.nvi
 clone "copilot"   "copilotlsp-nvim/copilot-lsp"                 "copilot-lsp"                       "1b6d827359"
 clone "copilot"   "fang2hou/blink-copilot"                      "blink-copilot"                     "v1.4.1"
 
+# Editor
+clone "editor"       "folke/todo-comments.nvim"                 "todo-comments"                      "v1.5.0"
+clone "editor"       "atiladefreitas/dooing"                    "dooing"                             "v2.10.0"
+
 # DAP
 clone "dap"       "mfussenegger/nvim-dap"                       "nvim-dap"                          "0.10.0"
 clone "dap"       "rcarriga/nvim-dap-ui"                        "nvim-dap-ui"                       "v4.0.0"
 clone "dap"       "nvim-neotest/nvim-nio"                       "nvim-nio"                          "v1.10.1"
-:q
 clone "dap"       "theHamsta/nvim-dap-virtual-text"             "nvim-dap-virtual-text"             "fbdb48c2ed"
 clone "dap"       "mxsdev/nvim-dap-vscode-js"                  "nvim-dap-vscode-js"                "v1.1.0"
 
