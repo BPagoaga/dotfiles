@@ -3,16 +3,16 @@
 
 local ok, yazi = pcall(require, "yazi")
 if not ok then
-	return
+  return
 end
 
 yazi.setup({
-	open_for_directories = false,
-	use_ya_for_events_reading = true,
-	use_yazi_client_id_flag = true,
-	keymaps = {
-		show_help = "<f1>",
-	},
+  open_for_directories = false,
+  use_ya_for_events_reading = true,
+  use_yazi_client_id_flag = true,
+  keymaps = {
+    show_help = "<f1>",
+  },
 })
 
 local map = vim.keymap.set

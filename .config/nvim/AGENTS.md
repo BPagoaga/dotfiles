@@ -73,6 +73,11 @@ vim.keymap.set("n", "<leader>x", ..., { desc = "..." })
 - Plugin keymaps are defined inside the plugin's config file
 - which-key group prefixes are registered in `lua/plugins/editor.lua`
 
+**Rule: Every new keymap added anywhere in this config MUST also be registered in the `spec` table in `lua/plugins/editor.lua`:**
+- If it introduces a new `<leader>X` prefix, add a `{ "<leader>X", group = "..." }` entry.
+- If it is a leaf keymap, add a `{ "<leader>XX", desc = "..." }` entry (include `mode` if not normal-mode only).
+- Buffer-local keymaps (e.g. from `LspAttach`) should also be documented in the spec so they appear in which-key globally.
+
 ### Reserved leader prefixes
 
 | Prefix | Group |
@@ -90,6 +95,13 @@ vim.keymap.set("n", "<leader>x", ..., { desc = "..." })
 | `<leader>n` | Notifications |
 | `<leader>e` | File explorer (snacks explorer) |
 | `<leader>E` | Diagnostic float |
+| `<leader>x` | Trouble |
+| `<leader>y` | Yazi |
+| `<leader>q` | Session/Quit |
+| `<leader>t` | Terminal |
+| `<leader>s` | Search |
+| `<leader>b` | Buffers |
+| `<leader>c` | Code |
 
 ## LSP Setup
 

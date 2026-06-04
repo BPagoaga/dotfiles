@@ -70,6 +70,7 @@ clone "copilot"   "fang2hou/blink-copilot"                      "blink-copilot" 
 clone "dap"       "mfussenegger/nvim-dap"                       "nvim-dap"                          "0.10.0"
 clone "dap"       "rcarriga/nvim-dap-ui"                        "nvim-dap-ui"                       "v4.0.0"
 clone "dap"       "nvim-neotest/nvim-nio"                       "nvim-nio"                          "v1.10.1"
+:q
 clone "dap"       "theHamsta/nvim-dap-virtual-text"             "nvim-dap-virtual-text"             "fbdb48c2ed"
 clone "dap"       "mxsdev/nvim-dap-vscode-js"                  "nvim-dap-vscode-js"                "v1.1.0"
 
@@ -79,6 +80,7 @@ clone "format"    "stevearc/conform.nvim"                       "conform.nvim"  
 # UI & utilities
 clone "ui"        "nvim-lualine/lualine.nvim"                   "lualine.nvim"                      "131a558e13"
 clone "ui"        "nvim-tree/nvim-web-devicons"                 "nvim-web-devicons"                 "v0.100"
+clone "ui"        "folke/trouble.nvim"                          "trouble"                           "bd67efe408d4816e25e8491cc5ad4088e708a69a"
 clone "pairs"     "windwp/nvim-autopairs"                       "nvim-autopairs"                    "0.10.0"
 clone "surround"  "kylechui/nvim-surround"                      "nvim-surround"                     "v4.0.5"
 clone "comment"   "numToStr/Comment.nvim"                       "Comment.nvim"                      "v0.8.0"
@@ -96,6 +98,7 @@ clone "noice"     "folke/noice.nvim"                            "noice.nvim"    
 clone "noice"     "MunifTanjim/nui.nvim"                        "nui.nvim"                          "0.4.0"
 
 # Yazi file manager
+clone "yazi"      "nvim-lua/plenary.nvim"                       "plenary.nvim"                      "v0.1.4"
 clone "yazi"      "mikavilpas/yazi.nvim"                        "yazi.nvim"                         "v13.1.6"
 
 # Refactoring

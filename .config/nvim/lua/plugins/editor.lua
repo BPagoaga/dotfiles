@@ -121,16 +121,34 @@ if ok_wk then
 			{ "<leader>s",  group = "Search" },
 			{ "<leader>t",  group = "Terminal" },
 			{ "<leader>q",  group = "Session/Quit" },
+			{ "<leader>x",  group = "Trouble" },
+			{ "<leader>y",  group = "Yazi" },
 			-- Buffer
 			{ "<leader>bd", desc = "Delete buffer" },
+			-- Misc leader
+			{ "<leader>,",  desc = "Buffers" },
+			{ "<leader>:",  desc = "Command History" },
+			{ "<leader>o",  desc = "New line below" },
+			{ "<leader>O",  desc = "New line above" },
+			{ "<leader>wq", desc = "Save and quit" },
 			-- Code / LSP
 			{ "<leader>ca", desc = "Code action" },
 			{ "<leader>cd", desc = "Line diagnostics" },
 			{ "<leader>cl", desc = "LSP Info" },
+			{ "<leader>cw", desc = "Open yazi (cwd)" },
 			{ "<leader>rn", desc = "Rename symbol" },
 			{ "<leader>ds", desc = "Document symbols" },
 			{ "<leader>ws", desc = "Workspace symbols" },
 			{ "<leader>ih", desc = "Toggle inlay hints" },
+			-- LSP navigation (buffer-local)
+			{ "gd",         desc = "LSP: Go to definition" },
+			{ "gD",         desc = "LSP: Go to declaration" },
+			{ "gr",         desc = "LSP: Go to references" },
+			{ "gI",         desc = "LSP: Go to implementation" },
+			{ "gt",         desc = "LSP: Go to type definition" },
+			{ "gvd",        desc = "LSP: Go to definition (vsplit)" },
+			{ "ghd",        desc = "LSP: Go to definition (split)" },
+			{ "K",          desc = "LSP: Hover documentation" },
 			-- Diagnostics
 			{ "<leader>E",  desc = "Diagnostic float" },
 			{ "<leader>dq", desc = "Diagnostics to loclist" },
@@ -139,6 +157,47 @@ if ok_wk then
 			-- Git
 			{ "]g",         desc = "Next hunk" },
 			{ "[g",         desc = "Prev hunk" },
+			-- AI / Copilot
+			{ "<leader>aa", desc = "Toggle Copilot Chat" },
+			{ "<leader>ax", desc = "Clear Copilot Chat" },
+			{ "<leader>aq", desc = "Quick Copilot Chat" },
+			{ "<leader>ap", desc = "Copilot Prompts" },
+			{ "<leader>aic", desc = "Open OpenCode AI" },
+			-- Debug (DAP)
+			{ "<leader>db", desc = "Toggle Breakpoint" },
+			{ "<leader>dB", desc = "Conditional Breakpoint" },
+			{ "<leader>dl", desc = "Log Point" },
+			{ "<leader>dc", desc = "Continue" },
+			{ "<leader>di", desc = "Step Into" },
+			{ "<leader>do", desc = "Step Over" },
+			{ "<leader>dO", desc = "Step Out" },
+			{ "<leader>dC", desc = "Run to Cursor" },
+			{ "<leader>dr", desc = "Open REPL" },
+			{ "<leader>dR", desc = "Run Last" },
+			{ "<leader>dh", desc = "Eval",                    mode = { "n", "v" } },
+			{ "<leader>du", desc = "Toggle DAP UI" },
+			-- Trouble
+			{ "<leader>xx", desc = "Diagnostics" },
+			{ "<leader>xX", desc = "Buffer Diagnostics" },
+			{ "<leader>xs", desc = "Symbols" },
+			{ "<leader>xl", desc = "LSP definitions/references" },
+			{ "<leader>xL", desc = "Location List" },
+			{ "<leader>xQ", desc = "Quickfix List" },
+			-- Yazi
+			{ "<leader>yz", desc = "Open yazi (current file)" },
+			-- Session
+			{ "<leader>qs", desc = "Restore Session (cwd)" },
+			{ "<leader>qS", desc = "Select Session" },
+			{ "<leader>ql", desc = "Restore Last Session" },
+			{ "<leader>qd", desc = "Stop Persistence" },
+			-- Notifications
+			{ "<leader>nn", desc = "Notification History" },
+			{ "<leader>nd", desc = "Dismiss Notifications" },
+			-- UI
+			{ "<leader>uC", desc = "Colorschemes" },
+			-- Terminal
+			{ "<leader>to", desc = "Open terminal" },
+			{ "<leader>tt", desc = "Toggle terminal" },
 			-- Refactor
 			{ "<leader>re", desc = "Extract function",        mode = "x" },
 			{ "<leader>rf", desc = "Extract function to file", mode = "x" },

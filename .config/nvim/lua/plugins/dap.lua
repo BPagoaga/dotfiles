@@ -163,5 +163,7 @@ map("n", "<leader>dr", dap.repl.open, { desc = "DAP: Open REPL" })
 map("n", "<leader>dR", dap.run_last, { desc = "DAP: Run Last" })
 if ok_dapui then
 	map({ "n", "v" }, "<leader>dh", dapui.eval, { desc = "DAP: Eval" })
-	map("n", "<leader>du", dapui.toggle, { desc = "DAP: Toggle UI" })
+	map("n", "<leader>du", function()
+		dapui.toggle()
+	end, { desc = "DAP: Toggle UI" })
 end
