@@ -19,7 +19,7 @@ map("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "Increase window width
 -- Buffer navigation
 map("n", "<S-l>", ":bnext<CR>", { desc = "Next buffer" })
 map("n", "<S-h>", ":bprevious<CR>", { desc = "Previous buffer" })
-map("n", "<leader>bd", ":bdelete<CR>", { desc = "Delete buffer" })
+map("n", "<leader>bd", function() require("snacks").bufdelete() end, { desc = "Delete buffer" })
 map("n", "bo", ":%bdelete|edit#|bdelete#<CR>", { desc = "Delete all other buffers" })
 
 -- New line without entering insert mode

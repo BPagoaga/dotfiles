@@ -12,6 +12,14 @@ Snacks.setup({
     dashboard = { border = "none" },
   },
 
+  statuscolumn = {
+    left = { "mark", "sign" },
+    right = { "fold", "git" },
+    folds = { open = false, git_hl = false },
+    git = { patterns = { "GitSign", "MiniDiffSign" } },
+    refresh = 50,
+  },
+
   scroll = {
     animate = {
       duration = { step = 15, total = 80 },
@@ -124,6 +132,8 @@ Snacks.setup({
     },
   },
 })
+
+vim.opt.statuscolumn = [[%!v:lua.Snacks.statuscolumn()]]
 
 -- ============================================================================
 -- Scratch
@@ -258,5 +268,13 @@ map({ "n", "t" }, "<C-/>", function() Snacks.terminal.toggle() end, { desc = "To
 -- OpenCode AI
 -- ============================================================================
 map("n", "<leader>aic", function()
-  Snacks.terminal("opencode", { cwd = vim.fn.getcwd(), esc_esc = false, ctrl_hjkl = false })
+  Snacks.terminal("opencode", {
+    cwd = vim.fn.getcwd(),
+    esc_esc = false,
+    ctrl_hjkl = false,
+    win = {
+      position = "right",
+      width = 0.4,
+    },
+  })
 end, { desc = "Open OpenCode AI" })
