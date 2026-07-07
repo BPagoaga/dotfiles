@@ -202,7 +202,7 @@ end, { desc = "Grep (root)" })
 
 map("n", "<leader>sb", function() Snacks.picker.lines() end, { desc = "Buffer Lines" })
 map("n", "<leader>sB", function() Snacks.picker.grep_buffers() end, { desc = "Grep Open Buffers" })
-map("n", "<leader>ss", function() Snacks.picker.smart() end, { desc = "Smart Find Files" })
+map("n", "<leader>fs", function() Snacks.picker.smart() end, { desc = "Smart Find Files" })
 map("n", "<leader>sR", function() Snacks.picker.resume() end, { desc = "Resume Picker" })
 map("n", "<leader>;", function() Snacks.picker.resume() end, { desc = "Resume Picker" })
 

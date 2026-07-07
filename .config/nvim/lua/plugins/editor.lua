@@ -107,6 +107,7 @@ if ok_wk then
       -- Groups
       { "<leader>f",   group = "Find/Files" },
       { "<leader>g",   group = "Git" },
+      { "<leader>go",  group = "Octo/GitHub" },
       { "<leader>l",   group = "LSP" },
       { "<leader>d",   group = "Debug" },
       { "<leader>h",   group = "Hunks" },
@@ -183,6 +184,13 @@ if ok_wk then
       { "<leader>xl",  desc = "LSP definitions/references" },
       { "<leader>xL",  desc = "Location List" },
       { "<leader>xQ",  desc = "Quickfix List" },
+      -- Octo / GitHub
+      { "<leader>goi", desc = "Issues" },
+      { "<leader>goI", desc = "Create Issue" },
+      { "<leader>gop", desc = "Pull Requests" },
+      { "<leader>goP", desc = "Create PR" },
+      { "<leader>gor", desc = "Start Review" },
+      { "<leader>goa", desc = "Actions" },
       -- Yazi
       { "<leader>yz",  desc = "Open yazi (current file)" },
       -- Session

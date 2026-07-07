@@ -54,3 +54,6 @@ opt.foldlevel = 99
 
 -- Markdown
 opt.conceallevel = 2
+
+-- Spell checking (English + French)
+opt.spelllang = "en,fr"

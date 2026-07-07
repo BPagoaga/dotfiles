@@ -200,28 +200,7 @@ vim.lsp.config["marksman"] = {
 	root_markers = { ".marksman.toml", ".git" },
 }
 
--- Java (Eclipse JDT LS)
-vim.lsp.config["jdtls"] = {
-	cmd = { "jdtls" },
-	filetypes = { "java" },
-	root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" },
-	settings = {
-		java = {
-			inlayHints = { parameterNames = { enabled = "all" } },
-			format = { enabled = true },
-			completion = { enabled = true, guessMethodArguments = true },
-			signatureHelp = { enabled = true },
-			contentProvider = { preferred = "fernflower" },
-			sources = { organizeImports = { starThreshold = 9999, staticStarThreshold = 9999 } },
-			codeGeneration = {
-				toString = { template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}" },
-				useBlocks = true,
-			},
-		},
-	},
-}
-
--- Enable all configured servers
+-- Enable all configured servers (jdtls is managed by nvim-java via lspconfig)
 vim.lsp.enable({
 	"vtsls",
 	"eslint",
@@ -231,7 +210,6 @@ vim.lsp.enable({
 	"jsonls",
 	"lua_ls",
 	"marksman",
-	"jdtls",
 })
 
 -- LSP attach: keymaps, inlay hints, auto-format

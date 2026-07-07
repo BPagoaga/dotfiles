@@ -93,6 +93,9 @@ clone "whichkey"  "folke/which-key.nvim"                        "which-key.nvim"
 clone "mini"      "echasnovski/mini.nvim"                       "mini.nvim"                         "v0.17.0"
 clone "markdown"  "MeanderingProgrammer/render-markdown.nvim"   "render-markdown.nvim"              "v8.12.0"
 
+# GitHub integration
+clone "github"    "pwntester/octo.nvim"                         "octo.nvim"                         "b9a73e167f"
+
 # Session management
 clone "session"   "folke/persistence.nvim"                         "persistence.nvim"                  "v3.1.0"
 
@@ -107,6 +110,14 @@ clone "yazi"      "mikavilpas/yazi.nvim"                        "yazi.nvim"     
 # Refactoring
 clone "refactor"  "lewis6991/async.nvim"                         "async.nvim"                        "7a1d7d4993"
 clone "refactor"  "ThePrimeagen/refactoring.nvim"               "refactoring.nvim"                  "624c01e817"
+
+# Java (nvim-java + dependencies)
+clone "java"      "neovim/nvim-lspconfig"                        "nvim-lspconfig"                    "v1.6.0"
+clone "java"      "nvim-java/lua-async-await"                    "lua-async-await"                   "v0.0.7"
+clone "java"      "nvim-java/nvim-java-core"                     "nvim-java-core"                    "v1.3.2"
+clone "java"      "nvim-java/nvim-java-test"                     "nvim-java-test"                    "v0.5.0"
+clone "java"      "nvim-java/nvim-java-dap"                      "nvim-java-dap"                     "v0.3.0"
+clone "java"      "nvim-java/nvim-java"                          "nvim-java"                         "v2.3.0"
 
 # nvim-treesitter (pinned commit) stores queries under runtime/queries/ not queries/
 # Neovim looks for queries at {plugin}/queries/ so we symlink to make them discoverable

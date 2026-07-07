@@ -9,7 +9,7 @@ vim.g._start_ns = vim.uv.hrtime()
 
 -- Leaders must be set before any plugin or keymap module is loaded
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.maplocalleader = ","
 
 -- Core
 require("options")
@@ -33,3 +33,5 @@ require("plugins.yazi")
 require("plugins.session")
 require("plugins.refactoring")
 require("plugins.trouble")
+require("plugins.octo")
+require("plugins.java")

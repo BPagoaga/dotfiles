@@ -33,16 +33,42 @@ map("n", "<Esc>", ":nohl<CR>", { desc = "Clear search highlight" })
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
 map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
+-- Better paste
+-- send deleted char to blackhole register
+map("n", "x", '"_x')
+
+-- Select all
+map("n", "<C-a>", "gg<S-v>G")
+--
+-- Increment/decrement
+map("n", "+", "<C-a>")
+map("n", "-", "<C-x>")
+
+-- surround with curly braces
+map("v", "<leader>{", "c{<Esc>pa}<Esc>")
+-- surround with brackets
+map("v", "<leader>[", "c[<Esc>pa]<Esc>")
+-- surround with parentheses
+map("v", "<leader>(", "c(<Esc>pa)<Esc>")
+-- surround with double quotes
+map("v", '<leader>"', 'c"<Esc>pa"<Esc>')
+-- surround with simple quotes
+map("v", "<leader>'", "c'<Esc>pa'<Esc>")
+
+-- keep whatever is in the register when pasting / deleting
+map("x", "<leader>p", [["_dP]])
+map({ "n", "v" }, "<leader>d", [["_d]])
+
 -- Keep cursor centered when scrolling (only if cursor actually moved)
 map("n", "<C-d>", function()
-	local before = vim.fn.line(".")
-	vim.cmd("normal! \x04") -- <C-d>
-	if vim.fn.line(".") ~= before then vim.cmd("normal! zz") end
+  local before = vim.fn.line(".")
+  vim.cmd("normal! \x04") -- <C-d>
+  if vim.fn.line(".") ~= before then vim.cmd("normal! zz") end
 end)
 map("n", "<C-u>", function()
-	local before = vim.fn.line(".")
-	vim.cmd("normal! \x15") -- <C-u>
-	if vim.fn.line(".") ~= before then vim.cmd("normal! zz") end
+  local before = vim.fn.line(".")
+  vim.cmd("normal! \x15") -- <C-u>
+  if vim.fn.line(".") ~= before then vim.cmd("normal! zz") end
 end)
 map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
