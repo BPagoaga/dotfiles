@@ -60,12 +60,6 @@ fi
 # Snacks (pickers, dashboard, lazygit, scratch)
 clone "snacks"    "folke/snacks.nvim"                           "snacks.nvim"                       "v2.31.0"
 
-# Copilot
-clone "copilot"   "github/copilot.vim"                          "copilot.vim"                       "v1.59.0"
-clone "copilot"   "CopilotC-Nvim/CopilotChat.nvim"              "CopilotChat.nvim"                  "v4.7.4"
-clone "copilot"   "copilotlsp-nvim/copilot-lsp"                 "copilot-lsp"                       "1b6d827359"
-clone "copilot"   "fang2hou/blink-copilot"                      "blink-copilot"                     "v1.4.1"
-
 # Editor
 clone "editor"       "folke/todo-comments.nvim"                 "todo-comments"                      "v1.5.0"
 clone "editor"       "atiladefreitas/dooing"                    "dooing"                             "v2.10.0"
@@ -111,6 +105,15 @@ clone "yazi"      "mikavilpas/yazi.nvim"                        "yazi.nvim"     
 clone "refactor"  "lewis6991/async.nvim"                         "async.nvim"                        "7a1d7d4993"
 clone "refactor"  "ThePrimeagen/refactoring.nvim"               "refactoring.nvim"                  "624c01e817"
 
+# Search and replace
+clone "grugfar"   "MagicDuck/grug-far.nvim"                      "grug-far.nvim"                     "1.6.72"
+
+# Live preview
+# NOTE: pinned to a post-v0.9.6 commit, not the v0.9.6 tag, because that
+# release freezes Nvim on `:LivePreview start` (nested blocking uv.run()
+# call inside server/init.lua). Fixed by upstream PR #365, not yet tagged.
+clone "livepreview" "brianhuster/live-preview.nvim"           "live-preview.nvim"                 "5977060965"
+
 # Java (nvim-java + dependencies)
 clone "java"      "neovim/nvim-lspconfig"                        "nvim-lspconfig"                    "v1.6.0"
 clone "java"      "nvim-java/lua-async-await"                    "lua-async-await"                   "v0.0.7"
@@ -129,4 +132,3 @@ fi
 
 echo ""
 echo "Done! Open Neovim and run :TSUpdate to install parsers."
-echo "Run :Copilot setup for GitHub Copilot authentication."

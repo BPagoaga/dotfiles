@@ -124,6 +124,7 @@ if ok_wk then
       { "<leader>q",   group = "Session/Quit" },
       { "<leader>x",   group = "Trouble" },
       { "<leader>y",   group = "Yazi" },
+      { "<leader>p",   group = "Preview" },
       -- Buffer
       { "<leader>bd",  desc = "Delete buffer" },
       -- Misc leader
@@ -138,6 +139,7 @@ if ok_wk then
       { "<leader>cl",  desc = "LSP Info" },
       { "<leader>cw",  desc = "Open yazi (cwd)" },
       { "<leader>rn",  desc = "Rename symbol" },
+      { "<leader>sr",  desc = "Search and replace" },
       { "<leader>ds",  desc = "Document symbols" },
       { "<leader>ws",  desc = "Workspace symbols" },
       { "<leader>ih",  desc = "Toggle inlay hints" },
@@ -193,6 +195,10 @@ if ok_wk then
       { "<leader>goa", desc = "Actions" },
       -- Yazi
       { "<leader>yz",  desc = "Open yazi (current file)" },
+      -- Live Preview
+      { "<leader>ps",  desc = "Start preview" },
+      { "<leader>pc",  desc = "Close preview" },
+      { "<leader>pp",  desc = "Pick file to preview" },
       -- Session
       { "<leader>qs",  desc = "Restore Session (cwd)" },
       { "<leader>qS",  desc = "Select Session" },

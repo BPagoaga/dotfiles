@@ -49,6 +49,8 @@ lua/
     noice.lua               # noice.nvim
     yazi.lua                # yazi.nvim
     session.lua             # persistence.nvim
+    live-preview.lua        # live-preview.nvim
+    grug-far.lua            # grug-far.nvim (search and replace)
 ```
 
 ## Plugin Config Convention
@@ -102,6 +104,7 @@ vim.keymap.set("n", "<leader>x", ..., { desc = "..." })
 | `<leader>s` | Search |
 | `<leader>b` | Buffers |
 | `<leader>c` | Code |
+| `<leader>p` | Preview (live-preview.nvim) |
 
 ## LSP Setup
 
