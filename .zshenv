@@ -22,7 +22,9 @@ if [ "$machine" = "Mac" ]; then
     export PATH=$PATH:$ANDROID_HOME/platform-tools
     export PATH="$PATH:~/flutter/bin"
     export PATH="/opt/homebrew/bin:$PATH"
-    export JAVA_HOME=/Applications/Android\ Studio.app/Contents/jbr/Contents/Home
+    export CAPACITOR_ANDROID_STUDIO_PATH="/home/bpagoaga/android-studio/bin/studio.sh"
+    export JAVA_HOME="/home/bpagoaga/.sdkman/candidates/java/current/bin/java"
+    # export JAVA_HOME=/Applications/Android\ Studio.app/Contents/jbr/Contents/Home
 elif [ "$machine" = "Linux" ]; then
     # code for GNU/Linux platform
     export ANDROID_HOME="/home/bpagoaga/.android/android_sdk_root"

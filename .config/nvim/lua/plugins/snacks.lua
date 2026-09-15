@@ -72,6 +72,15 @@ Snacks.setup({
           },
         }
       end)(),
+      (function()
+        return {
+          align = "center",
+          text = {
+            { "  ", hl = "footer" },
+            { os.date("%A, %d %B %Y  %H:%M"), hl = "special" },
+          },
+        }
+      end)(),
       {
         align = "center",
         text = {

@@ -95,17 +95,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Determine if running on linux or macos
-unameOut="$(uname -s)"
-case "${unameOut}" in
-  Linux*)     machine=Linux;;
-  Darwin*)    machine=Mac;;
-  CYGWIN*)    machine=Cygwin;;
-  MINGW*)     machine=MinGw;;
-  *)          machine="UNKNOWN:${unameOut}"
-esac
-
-
 nvm_auto_use() {
   local node_version="$(nvm version)"
   local nvmrc_path="$(nvm_find_nvmrc)"
