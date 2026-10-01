@@ -1,5 +1,9 @@
 -- Install: ~/.local/share/nvim/site/pack/snacks/start/snacks.nvim
-local picker_root = vim.fs.root(0, { "nvim-pack-lock.json", "package-lock.json", "yarn.lock", ".git" })
+-- Resolved per call from the current buffer. Markers in a nested list share
+-- priority, so the nearest one wins (a stray ~/package-lock.json can't beat a repo's .git).
+local function picker_root()
+  return vim.fs.root(0, { { ".git", "package-lock.json", "yarn.lock" } }) or vim.fn.getcwd()
+end
 
 local ok, Snacks = pcall(require, "snacks")
 if not ok then
@@ -192,7 +196,7 @@ end, { desc = "File explorer" })
 map("n", "<leader>E", function()
   Snacks.explorer({
     layout = { preset = "default", preview = true },
-    cwd = picker_root,
+    cwd = picker_root(),
     ignored = true,
     hidden = true,
     auto_close = true,
@@ -203,11 +207,11 @@ end, { desc = "File explorer (root)" })
 -- Pickers — Files
 -- ============================================================================
 map("n", "<leader>ff", function()
-  Snacks.picker.files({ cwd = picker_root, hidden = true, ignored = false })
+  Snacks.picker.files({ cwd = picker_root(), hidden = true, ignored = false })
 end, { desc = "Find Files (root)" })
 
 map("n", "<leader>f.", function()
-  Snacks.picker.files({ cwd = picker_root, hidden = true, ignored = true })
+  Snacks.picker.files({ cwd = picker_root(), hidden = true, ignored = true })
 end, { desc = "Find Files including ignored" })
 
 map("n", "<leader> ", function()
@@ -239,7 +243,7 @@ end, { desc = "Projects" })
 -- Pickers — Search / Grep
 -- ============================================================================
 map("n", "<leader>sg", function()
-  Snacks.picker.grep({ cwd = picker_root })
+  Snacks.picker.grep({ cwd = picker_root() })
 end, { desc = "Grep (root)" })
 
 map("n", "<leader>sb", function()
