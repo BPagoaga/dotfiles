@@ -3,9 +3,11 @@
 
 local ok, grug_far = pcall(require, "grug-far")
 if not ok then
-	return
+  return
 end
 
 grug_far.setup()
 
-vim.keymap.set("n", "<leader>sr", function() grug_far.open() end, { desc = "Search and replace" })
+vim.keymap.set("n", "<leader>sr", function()
+  grug_far.open()
+end, { desc = "Search and replace" })

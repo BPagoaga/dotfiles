@@ -4,13 +4,13 @@
 
 local ok, noice = pcall(require, "noice")
 if not ok then
-	return
+  return
 end
 
 noice.setup({
-	presets = {
-		lsp_doc_border = true,
-		command_palette = false,
-		bottom_search = false,
-	},
+  presets = {
+    lsp_doc_border = true,
+    command_palette = false,
+    bottom_search = false,
+  },
 })

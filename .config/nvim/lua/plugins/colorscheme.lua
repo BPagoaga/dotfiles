@@ -2,10 +2,18 @@
 
 local function apply_transparency()
   local groups = {
-    "Normal", "NormalNC", "NormalFloat", "FloatBorder",
-    "SignColumn", "StatusLine", "StatusLineNC",
-    "TabLine", "TabLineFill", "TabLineSel",
-    "WinBar", "WinBarNC",
+    "Normal",
+    "NormalNC",
+    "NormalFloat",
+    "FloatBorder",
+    "SignColumn",
+    "StatusLine",
+    "StatusLineNC",
+    "TabLine",
+    "TabLineFill",
+    "TabLineSel",
+    "WinBar",
+    "WinBarNC",
   }
   for _, group in ipairs(groups) do
     vim.api.nvim_set_hl(0, group, { bg = "NONE", ctermbg = "NONE" })

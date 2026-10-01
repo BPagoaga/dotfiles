@@ -19,7 +19,9 @@ map("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "Increase window width
 -- Buffer navigation
 map("n", "<S-l>", ":bnext<CR>", { desc = "Next buffer" })
 map("n", "<S-h>", ":bprevious<CR>", { desc = "Previous buffer" })
-map("n", "<leader>bd", function() require("snacks").bufdelete() end, { desc = "Delete buffer" })
+map("n", "<leader>bd", function()
+  require("snacks").bufdelete()
+end, { desc = "Delete buffer" })
 map("n", "bo", ":%bdelete|edit#|bdelete#<CR>", { desc = "Delete all other buffers" })
 
 -- New line without entering insert mode
@@ -63,12 +65,16 @@ map({ "n", "v" }, "<leader>d", [["_d]])
 map("n", "<C-d>", function()
   local before = vim.fn.line(".")
   vim.cmd("normal! \x04") -- <C-d>
-  if vim.fn.line(".") ~= before then vim.cmd("normal! zz") end
+  if vim.fn.line(".") ~= before then
+    vim.cmd("normal! zz")
+  end
 end)
 map("n", "<C-u>", function()
   local before = vim.fn.line(".")
   vim.cmd("normal! \x15") -- <C-u>
-  if vim.fn.line(".") ~= before then vim.cmd("normal! zz") end
+  if vim.fn.line(".") ~= before then
+    vim.cmd("normal! zz")
+  end
 end)
 map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")

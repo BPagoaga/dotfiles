@@ -14,7 +14,9 @@ if ok_ll then
   local function hl_fg(name)
     local hl = vim.api.nvim_get_hl(0, { name = name, link = false })
     local fg = hl and hl.fg
-    if fg then return string.format("#%06x", fg) end
+    if fg then
+      return string.format("#%06x", fg)
+    end
   end
 
   -- Show a pretty relative path, marking modified/readonly state
@@ -58,27 +60,47 @@ if ok_ll then
       lualine_x = {
         -- noice command status
         {
-          function() return require("noice").api.status.command.get() end,
-          cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
-          color = function() return { fg = hl_fg("Statement") } end,
+          function()
+            return require("noice").api.status.command.get()
+          end,
+          cond = function()
+            return package.loaded["noice"] and require("noice").api.status.command.has()
+          end,
+          color = function()
+            return { fg = hl_fg("Statement") }
+          end,
         },
         -- noice mode status (e.g. recording macro)
         {
-          function() return require("noice").api.status.mode.get() end,
-          cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
-          color = function() return { fg = hl_fg("Constant") } end,
+          function()
+            return require("noice").api.status.mode.get()
+          end,
+          cond = function()
+            return package.loaded["noice"] and require("noice").api.status.mode.has()
+          end,
+          color = function()
+            return { fg = hl_fg("Constant") }
+          end,
         },
         -- dap status
         {
-          function() return "  " .. require("dap").status() end,
-          cond = function() return package.loaded["dap"] and require("dap").status() ~= "" end,
-          color = function() return { fg = hl_fg("Debug") } end,
+          function()
+            return "  " .. require("dap").status()
+          end,
+          cond = function()
+            return package.loaded["dap"] and require("dap").status() ~= ""
+          end,
+          color = function()
+            return { fg = hl_fg("Debug") }
+          end,
         },
         -- Active LSP clients (LazyVim style)
         {
           function()
             local clients = vim.lsp.get_clients({ bufnr = 0 })
-            if #clients == 0 then return "" end
+            if #clients == 0 then
+              return ""
+            end
             local names = {}
             for _, c in ipairs(clients) do
               -- skip copilot noise
@@ -86,7 +108,9 @@ if ok_ll then
                 table.insert(names, c.name)
               end
             end
-            if #names == 0 then return "" end
+            if #names == 0 then
+              return ""
+            end
             return " " .. table.concat(names, ", ")
           end,
           cond = function()
@@ -97,7 +121,9 @@ if ok_ll then
             end
             return false
           end,
-          color = function() return { fg = hl_fg("Special") } end,
+          color = function()
+            return { fg = hl_fg("Special") }
+          end,
         },
         -- git diff (sourced from gitsigns)
         {
@@ -116,11 +142,13 @@ if ok_ll then
         },
       },
       lualine_y = {
-        { "progress", separator = " ",                  padding = { left = 1, right = 0 } },
+        { "progress", separator = " ", padding = { left = 1, right = 0 } },
         { "location", padding = { left = 0, right = 1 } },
       },
       lualine_z = {
-        function() return " " .. os.date("%R") end,
+        function()
+          return " " .. os.date("%R")
+        end,
       },
     },
     extensions = { "lazy", "fzf" },
